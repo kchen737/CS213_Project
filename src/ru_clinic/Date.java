@@ -17,17 +17,22 @@ import java.util.StringTokenizer;
 
 
 public class Date {
-    @Override
-    public boolean equals(Object obj){
 
-        return false;
-    }
     public boolean isValid(String given){
-        int numOfSlashes;
-        int digits;
+        int numOfSlashes=0;
+        int digits = 0;
         int index=0;
         for (int i=0; i<given.length(); i++){
             char charOfDate = given.charAt(i);
+            if (Character.isDigit(charOfDate)){
+                digits++;
+            }
+            else if(charOfDate == '/'){
+                if (numOfSlashes<2 && digits>2){
+                    return false;
+                }
+
+            }
 
         }
         return false;
@@ -37,5 +42,8 @@ public class Date {
     private int month;
     private int day;
     //public boolean isValid();
+    public class main{
+
+    }
 }
 
