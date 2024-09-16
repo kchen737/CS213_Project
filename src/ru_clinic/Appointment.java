@@ -1,0 +1,19 @@
+package ru_clinic;
+
+/**
+ * You can add necessary constants, constructors, and methods. However, you CANNOT change or add
+ * instance variables. -2 points for each violation.
+ * You MUST override equals(), toString() and the comapreTo() methods, with the @Override tags. -2
+ * points for each violation. The equals() method returns true if two appointments have the same date,
+ * timeslot, and patient; returns false otherwise. The toString() method returns a textual representation of an
+ * appointment in the following formats.
+ */
+
+
+public class Appointment {
+    private Date date;
+    private Timeslot timeslot;
+    private Profile patient;
+    private Provider provider;
+
+}
