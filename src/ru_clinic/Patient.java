@@ -5,6 +5,6 @@ package ru_clinic;
 public class Patient {
     private Profile profile;
     private  Visit visits;
-    public int charge() {}
+    //public int charge() {}
 }
 

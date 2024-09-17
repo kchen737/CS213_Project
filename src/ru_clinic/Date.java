@@ -107,8 +107,27 @@ public class Date {
     public boolean leapYear(){
         return true;
     }
-    public class main{
 
+    /**
+     * Testbed main to exercise the isValid method
+     * @param args
+     */
+    public static void main(String args[]){
+        //testMonth_OutOfRange();
+        testDaysInFeb_Nonleap();
     }
+
+    /**Test case #1**/
+    private static void testDaysInFeb_Nonleap(){
+        //Date date = new Date("2/29/2011");
+        boolean expectedOutput = false;
+        //boolean actualOutput = date.isValid();
+        System.out.println();
+        /*if (expectedOutput != actualOutput){
+
+        }*/
+    }
+
+
 }
 
