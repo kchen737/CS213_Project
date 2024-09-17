@@ -66,6 +66,9 @@ public class Date {
      * @param
      * @return
      */
+    public Date(String date){
+
+    }
     public boolean isValid(){
         boolean bMonth = false;//checks to see which month does it belong
         boolean sMonth = false;
@@ -119,7 +122,7 @@ public class Date {
 
     /**Test case #1**/
     private static void testDaysInFeb_Nonleap(){
-        //Date date = new Date("2/29/2011");
+        Date date = new Date("2/29/2011");
         boolean expectedOutput = false;
         //boolean actualOutput = date.isValid();
         System.out.println();
