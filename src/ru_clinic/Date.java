@@ -1,7 +1,4 @@
 package ru_clinic;
-import java.util.Scanner;
-import java.util.Calendar;
-import java.util.StringTokenizer;
 
 
 /**
@@ -20,19 +17,17 @@ public class Date {
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
+    public int validMaxMonth = 12;
+    public int validMinMonth = 1;
+    public int validMaxDateOfLargeMonth = 31;
+    public int validMaxDateOfSmallMonth = 30;
+    public int[] smallMonth = {4,6,9,11};
+    public int[] bigMonth = {1,3,5,7,8,10,12};
+
     //isValid() method checks whether the date is a valid calendar date
 
-    /**
-     * isValid() method checks whether the date is a valid calendar date
-     * Check is it 1 or 2 digits for day and month
-     * Check is it 4 digits for year
-     * Check for month 1,3,5,7,8,10,12 is till 31
-     * Check for month 4,6,9,11 is till 30
-     * Check
-     * @param given
-     * @return
-     */
-    public boolean isValid(String given){
+
+    /*public boolean isValid(String given){
         int numOfSlashes=0;
         int digits = 0;
         int index=0;
@@ -56,12 +51,43 @@ public class Date {
 
         }
         return false;
-    }
+    }*/
 
     private int year;
     private int month;
     private int day;
-    //public boolean isValid();
+    /**
+     * isValid() method checks whether the date is a valid calendar date
+     * Check is it 1 or 2 digits for day and month
+     * Check is it 4 digits for year
+     * Check for month 1,3,5,7,8,10,12 is till 31
+     * Check for month 4,6,9,11 is till 30
+     * Check
+     * @param
+     * @return
+     */
+    public boolean isValid(){
+        boolean sMonth = false;//checks to see which month does it belong
+        boolean endOfsMonth = false; //checks to see if it reaches the end of smallMonth array list
+        if (year<1900) {
+            return false;
+        }
+        for (int i=0; i<7; i++){
+            if(month == smallMonth[i]){
+                sMonth = true;
+            }
+            else if(month == bigMonth[i]){
+                sMonth = false;
+            }
+            else if(month == 2){
+
+            }
+            else{
+                return false;
+            }
+        }
+        return false;
+    }
     public class main{
 
     }
