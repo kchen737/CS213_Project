@@ -67,26 +67,45 @@ public class Date {
      * @return
      */
     public boolean isValid(){
-        boolean sMonth = false;//checks to see which month does it belong
-        boolean endOfsMonth = false; //checks to see if it reaches the end of smallMonth array list
+        boolean bMonth = false;//checks to see which month does it belong
+        boolean sMonth = false;
         if (year<1900) {
             return false;
         }
         for (int i=0; i<7; i++){
-            if(month == smallMonth[i]){
-                sMonth = true;
+            if(month == bigMonth[i]){
+                bMonth = true;
+                if(day>31){
+                    return false;
+                }
             }
-            else if(month == bigMonth[i]){
-                sMonth = false;
+        }
+        if (!bMonth){
+            for (int i=0; i<4; i++){
+                if(month == smallMonth[i]){
+                    sMonth = true;
+                    if(day>30){
+                        return false;
+                    }
+                }
             }
-            else if(month == 2){
-
+        }
+        if(!bMonth && !sMonth){
+            if(month == 2){
+                return false;
             }
             else{
                 return false;
             }
         }
         return false;
+    }
+
+    /**
+     * leapYear() method checks for leap year for feburary
+     */
+    public boolean leapYear(){
+        return true;
     }
     public class main{
 
