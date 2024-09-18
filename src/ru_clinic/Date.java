@@ -1,5 +1,5 @@
 package ru_clinic;
-
+import java.util.StringTokenizer;
 
 /**
  * Verify if the dates are valid based on the following order
@@ -27,32 +27,6 @@ public class Date {
     //isValid() method checks whether the date is a valid calendar date
 
 
-    /*public boolean isValid(String given){
-        int numOfSlashes=0;
-        int digits = 0;
-        int index=0;
-        for (int i=0; i<given.length(); i++){
-            char charOfDate = given.charAt(i);
-            if (Character.isDigit(charOfDate)){
-                digits++;
-            }
-            else if(charOfDate == '/'){
-                if (numOfSlashes<2 && digits>2){
-                    return false;
-                }
-                else if(!(digits>2)){
-                    digits=0;
-                }
-                if(numOfSlashes==2 && digits>4){
-                    return false;
-                }
-
-            }
-
-        }
-        return false;
-    }*/
-
     private int year;
     private int month;
     private int day;
@@ -67,6 +41,10 @@ public class Date {
      * @return
      */
     public Date(String date){
+        StringTokenizer dateEntered = new StringTokenizer(date, "/");
+        day = Integer.parseInt(dateEntered.nextToken());
+        month = Integer.parseInt(dateEntered.nextToken());
+        year = Integer.parseInt(dateEntered.nextToken());
 
     }
     public boolean isValid(){
@@ -105,7 +83,7 @@ public class Date {
     }
 
     /**
-     * leapYear() method checks for leap year for feburary
+     * leapYear() method checks for leap year for february
      */
     public boolean leapYear(){
         return true;
@@ -118,6 +96,7 @@ public class Date {
     public static void main(String args[]){
         //testMonth_OutOfRange();
         testDaysInFeb_Nonleap();
+
     }
 
     /**Test case #1**/
