@@ -17,8 +17,6 @@ public class Date {
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
-    public int validMaxMonth = 12;
-    public int validMinMonth = 1;
     public int validMaxDateOfLargeMonth = 31;
     public int validMaxDateOfSmallMonth = 30;
     public int[] smallMonth = {4,6,9,11};
@@ -50,36 +48,36 @@ public class Date {
     public boolean isValid(){
         boolean bMonth = false;//checks to see which month does it belong
         boolean sMonth = false;
+        System.out.println(day+" "+ month+" "+ year);
         if (year<1900) {
             return false;
         }
-        for (int i=0; i<7; i++){
-            if(month == bigMonth[i]){
-                bMonth = true;
-                if(day>31){
-                    return false;
-                }
-            }
+        if (month==2){
+            System.out.println("received");
+            return true;
         }
-        if (!bMonth){
-            for (int i=0; i<4; i++){
-                if(month == smallMonth[i]){
-                    sMonth = true;
-                    if(day>30){
+        else {
+            for (int i=0; i<7; i++){
+                if(month == bigMonth[i]){
+                    bMonth = true;
+                    if(day>31 || day<1){
                         return false;
                     }
                 }
             }
-        }
-        if(!bMonth && !sMonth){
-            if(month == 2){
-                return false;
+            if (!bMonth){
+                for (int i=0; i<4; i++){
+                    if(month == smallMonth[i]){
+                        sMonth = true;
+                        if(day>30 || day<1){
+                            return false;
+                        }
+                    }
+                }
             }
-            else{
-                return false;
-            }
         }
-        return false;
+
+        return true;
     }
 
     /**
@@ -103,8 +101,8 @@ public class Date {
     private static void testDaysInFeb_Nonleap(){
         Date date = new Date("2/29/2011");
         boolean expectedOutput = false;
-        //boolean actualOutput = date.isValid();
-        System.out.println();
+        boolean actualOutput = date.isValid();
+        System.out.println(actualOutput);
         /*if (expectedOutput != actualOutput){
 
         }*/
