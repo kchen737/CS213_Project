@@ -1,4 +1,4 @@
-package ru_clinic;
+package ruclinic;
 import java.util.StringTokenizer;
 import java.util.Calendar;
 
@@ -26,18 +26,7 @@ public class Date {
 
     //isValid() method checks whether the date is a valid calendar date
 
-    /**
-     * isToday() method is used to check if the date is today, could be used for appointment making
-     * and also used to check if a birthday is valid or not
-     * @return
-     */
-    public boolean isToday(){
-        boolean correct = false;
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date currentDate = calendar.getTime();
-        //String todayDate = dateFormat.format(currentDate);
-        return correct;
-    }
+
 
 
     private int year;
@@ -61,6 +50,27 @@ public class Date {
 
     }
 
+    /**
+     * isToday() method is used to check if the date is today, could be used for appointment making
+     * and also used to check if a birthday is valid or not
+     * @return
+     */
+    public boolean isToday(){
+        boolean correct = true;
+        Calendar calendar = Calendar.getInstance();
+
+        int year_of_today = calendar.get(Calendar.YEAR); //uses the calendar class to retrieve year of today
+        int month_of_today = calendar.get(Calendar.MONTH)+1; //uses the calendar class to retrieve month of today
+        int day_of_today = calendar.get(Calendar.DAY_OF_MONTH); //uses the calendar class to retrieve day of month of today
+
+        if (year_of_today == year && month_of_today == month && day_of_today == day){
+            correct = false;
+            System.out.println("false");
+        }
+
+        System.out.println(month_of_today + " " + day_of_today + " " + year_of_today);
+        return correct;
+    }
 
 
     public boolean leap_year(){
@@ -142,9 +152,10 @@ public class Date {
 
     /**Test case #1**/
     private static void testDaysInFeb_Nonleap(){
-        Date date = new Date("02/31/2016");
+        Date date = new Date("09/19/2024");
         boolean expectedOutput = false;
         boolean actualOutput = date.isValid();
+        boolean testing = date.isToday();
         System.out.println(actualOutput);
         /*if (expectedOutput != actualOutput){
 

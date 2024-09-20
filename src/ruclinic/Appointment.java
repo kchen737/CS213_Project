@@ -1,4 +1,4 @@
-package ru_clinic;
+package ruclinic;
 
 /**
  * You can add necessary constants, constructors, and methods. However, you CANNOT change or add

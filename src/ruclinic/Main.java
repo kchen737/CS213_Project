@@ -1,4 +1,4 @@
-package ru_clinic;
+package ruclinic;
 
 import java.util.Scanner;
 

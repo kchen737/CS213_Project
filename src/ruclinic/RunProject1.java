@@ -1,7 +1,8 @@
-package ru_clinic;
+package ruclinic;
 
 public class RunProject1 {
     public static void main(String[] args){
-        new Scheduler().run();
+
+        new Scheduler().run(args);
     }
 }
