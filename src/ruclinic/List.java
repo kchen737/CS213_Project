@@ -9,6 +9,7 @@ public class List {
 
     //helper method
     private int find(Appointment appointment){
+
        return 1;
     }
     //helper method to increase the capacity by 4
@@ -20,6 +21,16 @@ public class List {
         return false;
     }
     public void add(Appointment appointment){
+        Date date = new Date("01/01/2020");
+        Timeslot timeslot = Timeslot.SLOT2;
+        Profile profile = new Profile("cindy", "lin", date);
+        //provider
+        //location country zip (strings)
+        Location location;
+        Specialty specialty;
+        Provider provider = new Provider(location, specialty);
+        //specialty charge int
+        appointment(date, timeslot, profile, provider);
 
     }
     public void remove(Appointment appointment){
@@ -38,13 +49,7 @@ public class List {
 
     }
 
-    @Override
-    public boolean equals(Object obj){
-        if(this == obj){
-            return true;
-        }
-        return true;
-    }
+
 
 
 }

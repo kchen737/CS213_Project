@@ -1,6 +1,9 @@
 package ruclinic;
 
-public enum Specialty {;
+public enum Specialty {
+    FAMILY(250),
+    PEDIATRICIAN(300),
+    ALLERGIST(350);
 
     private final int charge;
 

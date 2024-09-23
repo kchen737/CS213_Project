@@ -16,4 +16,17 @@ public class Appointment {
     private Profile patient;
     private Provider provider;
 
+    public Date getDate(){
+        return date;
+    }
+    public Timeslot getTimeslot(){
+        return timeslot;
+    }
+    public Profile getProfile(){
+        return patient;
+    }
+    public Provider getProvider(){
+        return provider;
+    }
+
 }

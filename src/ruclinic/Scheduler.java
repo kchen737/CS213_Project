@@ -14,10 +14,12 @@ public class Scheduler {
         while(!commandLine.equals("Q")){
             commandLine = scanner.nextLine();
             tokenizer = new StringTokenizer(commandLine, " ");
+            //check to see what does the command begin with, could be C, R, PA, PP, PL, PS
             while (tokenizer.hasMoreTokens()){
                 System.out.println(tokenizer.nextToken());
             }
         }
+
 
     }
 
