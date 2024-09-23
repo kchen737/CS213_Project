@@ -16,4 +16,41 @@ public class Appointment {
     private Profile patient;
     private Provider provider;
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Profile getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Profile patient) {
+        this.patient = patient;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    public Timeslot getTimeslot() {
+        return timeslot;
+    }
+
+    public void setTimeslot(Timeslot timeslot) {
+        this.timeslot = timeslot;
+    }
+    public Appointment(Date nDate, Timeslot nTimeslot, Profile nProfile, Provider nProvider){
+        date=nDate;
+        timeslot=nTimeslot;
+        patient=nProfile;
+        provider=nProvider;
+    }
 }

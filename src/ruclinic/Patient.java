@@ -1,6 +1,6 @@
 package ruclinic;
 /**
-@author LBSaka
+@author
  */
 public class Patient {
     private Profile profile;
@@ -8,5 +8,21 @@ public class Patient {
     public int charge() {
         return 1;
     }
-}
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public Visit getVisits() {
+        return visits;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public void setVisits(Visit visits) {
+        this.visits = visits;
+    }
+
+}
