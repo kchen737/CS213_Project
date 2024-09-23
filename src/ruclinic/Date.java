@@ -72,6 +72,24 @@ public class Date {
         return correct;
     }
 
+    public boolean satOrSun(){
+        boolean correct = true;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        if(dayOfWeek == Calendar.SATURDAY){
+            correct = false;
+        }
+        else if(dayOfWeek == Calendar.SUNDAY){
+            correct = false;
+        }
+
+
+        return correct;
+    }
+
 
     public boolean leap_year(){
         boolean correct = false;
