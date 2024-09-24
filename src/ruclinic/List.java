@@ -36,7 +36,7 @@ public class List {
     public void add(Appointment appointment){
         Date date = new Date("01/01/2020");
         Timeslot timeslot = Timeslot.SLOT2;
-        Profile profile = new Profile("cindy", "lin", date);
+        Profile profile = new Profile("c", "l", date);
         Provider provider = Provider.Harper;
         appointments[size] = appointment;
         size++;
