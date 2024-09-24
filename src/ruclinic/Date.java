@@ -90,6 +90,11 @@ public class Date implements Comparable<Date>{
         return correct;
     }
 
+    private static void testisValid(){
+        Date date1 = new Date("2/30/2024");
+        System.out.println(date1.isValid());
+    }
+
 
     public boolean leap_year(){
         boolean correct = false;
@@ -213,7 +218,8 @@ public class Date implements Comparable<Date>{
     public static void main(String args[]){
         //testMonth_OutOfRange();
         //testDaysInFeb_Nonleap();
-        testCompareTo();
+        //testCompareTo();
+        testisValid();
 
     }
 

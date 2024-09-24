@@ -1,6 +1,6 @@
 package ruclinic;
 
-public class Profile {
+public class Profile implements Comparable<Profile> {
     private String fname; //first name
     private String lname; //last name
     private Date dob;
@@ -35,6 +35,10 @@ public class Profile {
 
     @Override
     public int compareTo(Profile prof){
+        int lnameComparison = this.lname.compareTo(prof.lname);
+        int fnameComparison = this.fname.compareTo(prof.fname);
+        int dobComparison = this.dob.compareTo(prof.dob);
+
 
         return 1;
     }
