@@ -1,5 +1,9 @@
 package ruclinic;
 
+/**
+ * Timeslot class. This Enum class defines the timeslots of a day on weekdays.
+ * @Author: Kaiming Chen
+ */
 public enum Specialty {
     FAMILY(250),
     PEDIATRICIAN(300),

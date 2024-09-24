@@ -7,6 +7,7 @@ package ruclinic;
  * points for each violation. The equals() method returns true if two appointments have the same date,
  * timeslot, and patient; returns false otherwise. The toString() method returns a textual representation of an
  * appointment in the following formats.
+ * 10/30/2024 10:45 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY]
  */
 
 
@@ -34,21 +35,25 @@ public class Appointment {
         this.patient = patient;
         this.provider = provider;
     }
-
+    //Overrides .equals method for Appointment class to compare if the date, timeslot, patient matches
     @Override
     public boolean equals(Object obj){
-        if(this==obj){
-            return true;
+        if(obj instanceof Appointment){
+            Appointment otherAppointment = (Appointment) obj;
+            return this.date.equals(otherAppointment.date) &&
+                    this.timeslot.equals(otherAppointment.timeslot) &&
+                    this.patient.equals(otherAppointment.patient) &&
+                    this.provider.equals(otherAppointment.provider);
         }
-        if (obj==null || getClass() != obj.getClass()){
-            return false;
-        }
-        Appointment otherAppointment = (Appointment) obj;
+        return false;
 
-        return this.date.equals(otherAppointment.date) &&
-                this.timeslot.equals(otherAppointment.timeslot) &&
-                this.patient.equals(otherAppointment.patient) &&
-                this.provider.equals(otherAppointment.provider);
     }
+
+    @Override
+    public String toString(){
+        String str = "hello" ;
+        return str;
+    }
+
 
 }
