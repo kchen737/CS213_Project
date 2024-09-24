@@ -51,29 +51,11 @@ public class Appointment {
                 this.provider.equals(otherAppointment.provider);
     }
 
-
-
-    public void setDate(Date date) {
-        this.date = date;
+    @Override
+    public String toString(){
+        String str = "hello" ;
+        return str;
     }
 
-    public Profile getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Profile patient) {
-        this.patient = patient;
-    }
-
-
-
-    public void setProvider(Provider provider) {
-        this.provider = provider;
-    }
-
-
-    public void setTimeslot(Timeslot timeslot) {
-        this.timeslot = timeslot;
-    }
 
 }

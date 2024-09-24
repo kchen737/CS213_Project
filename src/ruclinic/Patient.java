@@ -33,13 +33,14 @@ public class Patient {
 
     @Override
     public boolean equals(Object obj){
-        if(this==obj){
-            return true;
-        }
-        Patient otherPatient = (Patient) obj;
+        if(obj instanceof Patient){
+            Patient otherPatient = (Patient) obj;
 
-        return this.profile.equals(otherPatient.profile) &&
-                this.visits.equals(otherPatient.visits);
+            return this.profile.equals(otherPatient.profile) &&
+                    this.visits.equals(otherPatient.visits);
+        }
+        return false;
+
     }
 }
 

@@ -17,4 +17,14 @@ public class Visit {
     public void setNext(Visit next){
         this.next = next;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Visit){
+            Visit anotherVisit = (Visit) obj;
+            return this.appointment.equals(anotherVisit.appointment)&&
+                    this.next.equals(anotherVisit.next);
+        }
+        return false;
+    }
 }

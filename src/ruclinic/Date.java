@@ -15,7 +15,7 @@ import java.util.Calendar;
  */
 
 
-public class Date {
+public class Date implements Comparable<Date>{
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
@@ -93,13 +93,13 @@ public class Date {
 
     public boolean leap_year(){
         boolean correct = false;
-        if (year % 4 == 0){
+        if (year % QUADRENNIAL == 0){
             if (day < 31 && day > 0){
                 System.out.println("leap year, correct day");
                 correct = true;
             }
         }
-        else if (year % 100 == 0 && year % 400 == 0){
+        else if (year % CENTENNIAL == 0 && year % QUATERCENTENNIAL == 0){
             if (day < 31 && day > 0 ){
                 correct = true;
             }
@@ -160,15 +160,50 @@ public class Date {
 
     @Override
     public boolean equals(Object obj){
-        if (this==obj){
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()){
-            return false;
-        }
-        Date anotherDate = (Date) obj;
 
-        return true;
+        if (obj instanceof Date ){
+            Date anotherDate = (Date) obj;
+            return this.year==anotherDate.year&&
+                    this.month==anotherDate.month&&
+                    this.day==anotherDate.day;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString(){
+        String dayStr = String.valueOf(day);
+        String monthStr = String.valueOf(month);
+        String yearStr = String.valueOf(year);
+        return monthStr + '/' + dayStr + '/' + yearStr;
+    }
+
+    @Override
+    public int compareTo(Date anotherDate){
+        if (this.year == anotherDate.year && this.month == anotherDate.month && this.day == anotherDate.day) return 0;
+        if (this.year>anotherDate.year){
+            System.out.println("year is larger");
+            return 1;
+        }
+        else if(this.month>anotherDate.month){
+            if (this.year == anotherDate.year){
+                System.out.println("year is the same, month is larger");
+                return 1;
+            }
+            else return -1;
+        }
+        else if(this.day>anotherDate.day){
+            if (this.year == anotherDate.year && this.month == anotherDate.month){
+                System.out.println("year, month are the same, day is larger");
+                return 1;
+            }
+            else return -1;
+        }
+        else{
+            System.out.println("year is smaller");
+            return -1;
+        }
+        //return 1;
     }
 
     /**
@@ -177,7 +212,8 @@ public class Date {
      */
     public static void main(String args[]){
         //testMonth_OutOfRange();
-        testDaysInFeb_Nonleap();
+        //testDaysInFeb_Nonleap();
+        testCompareTo();
 
     }
 
@@ -191,6 +227,12 @@ public class Date {
         /*if (expectedOutput != actualOutput){
 
         }*/
+    }
+    /**Test case for compareTo()**/
+    private static void testCompareTo(){
+        Date date1 = new Date("08/13/2015");
+        Date date2 = new Date("08/13/2013");
+        System.out.println(date1.compareTo(date2));
     }
 
     public int getDay(){

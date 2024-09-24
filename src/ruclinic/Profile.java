@@ -3,19 +3,7 @@ package ruclinic;
 public class Profile {
     private String fname; //first name
     private String lname; //last name
-    private Date dob; //date of birth
-    public void setFName(String firstName){
-        this.fname= firstName;
-    }
-    public String getFName(){
-        return fname;
-    }
-    public void setLname(String lastName){
-        this.lname=lastName;
-    }
-    public String getLname(){
-        return lname;
-    }
+    private Date dob;
 
     public Date getDob() {
         return dob;
@@ -28,5 +16,26 @@ public class Profile {
         lname= ln;
         dob= dateOfBirth;
     }
-}
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Profile){
+            Profile anotherProfile = (Profile) obj;
+            return this.fname.equals(anotherProfile.fname)&&
+                    this.lname.equals(anotherProfile.lname)&&
+                    this.dob.equals(anotherProfile.dob);
+        }
+        return false;
+    }
 
+    @Override
+    public String toString(){
+        String date = dob.toString();
+        return fname + lname + date;
+    }
+
+    @Override
+    public int compareTo(Profile prof){
+
+        return 1;
+    }
+}
