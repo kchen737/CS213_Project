@@ -72,6 +72,24 @@ public class Date {
         return correct;
     }
 
+    public boolean satOrSun(){
+        boolean correct = true;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        if(dayOfWeek == Calendar.SATURDAY){
+            correct = false;
+        }
+        else if(dayOfWeek == Calendar.SUNDAY){
+            correct = false;
+        }
+
+
+        return correct;
+    }
+
 
     public boolean leap_year(){
         boolean correct = false;
@@ -137,6 +155,19 @@ public class Date {
      * leapYear() method checks for leap year for february
      */
     public boolean leapYear(){
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this==obj){
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+        Date anotherDate = (Date) obj;
+
         return true;
     }
 
