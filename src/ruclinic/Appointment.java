@@ -28,5 +28,27 @@ public class Appointment {
     public Provider getProvider(){
         return provider;
     }
+    public Appointment(Date date, Timeslot timeslot, Profile patient, Provider provider){
+        this.date = date;
+        this.timeslot = timeslot;
+        this.patient = patient;
+        this.provider = provider;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj){
+            return true;
+        }
+        if (obj==null || getClass() != obj.getClass()){
+            return false;
+        }
+        Appointment otherAppointment = (Appointment) obj;
+
+        return this.date.equals(otherAppointment.date) &&
+                this.timeslot.equals(otherAppointment.timeslot) &&
+                this.patient.equals(otherAppointment.patient) &&
+                this.provider.equals(otherAppointment.provider);
+    }
 
 }
