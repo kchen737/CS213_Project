@@ -90,9 +90,6 @@ public class Date implements Comparable<Date>{
     }
 
     public boolean notSixMonth(){
-        boolean correct = false;
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
 
         Calendar today = Calendar.getInstance();
         today.add(Calendar.MONTH, 6);
@@ -100,19 +97,61 @@ public class Date implements Comparable<Date>{
         int sixMon_year = today.get(Calendar.YEAR);
         int sixMon_month = today.get(Calendar.MONTH)+1;
         int sixMon_day = today.get(Calendar.DAY_OF_MONTH);
-
         System.out.println(sixMon_month + "/" + sixMon_day+ "/" + sixMon_year);
 
+        if (year>sixMon_year){
+            return false;
+        }
+        else if(month>sixMon_month){
+            return false;
+        }
+        else if(day>sixMon_day){
+            return false;
+        }
+        else{
+            return true;
+        }
 
-        return correct;
     }
 
     public boolean beforeToday(){
-        return false;
+        Calendar calendar = Calendar.getInstance();
+        int year_of_today = calendar.get(Calendar.YEAR); //uses the calendar class to retrieve year of today
+        int month_of_today = calendar.get(Calendar.MONTH)+1; //uses the calendar class to retrieve month of today
+        int day_of_today = calendar.get(Calendar.DAY_OF_MONTH); //uses the calendar class to retrieve day of month of today
+
+        if (year<year_of_today){
+            return false;
+        }
+        else if(month<month_of_today){
+            return false;
+        }
+        else if(day<day_of_today){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public boolean isFuture(){
-        return false;
+        Calendar calendar = Calendar.getInstance();
+        int year_of_today = calendar.get(Calendar.YEAR); //uses the calendar class to retrieve year of today
+        int month_of_today = calendar.get(Calendar.MONTH)+1; //uses the calendar class to retrieve month of today
+        int day_of_today = calendar.get(Calendar.DAY_OF_MONTH); //uses the calendar class to retrieve day of month of today
+
+        if (year>year_of_today){
+            return false;
+        }
+        else if(month>month_of_today){
+            return false;
+        }
+        else if(day>day_of_today){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
 
