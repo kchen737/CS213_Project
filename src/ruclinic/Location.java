@@ -14,4 +14,9 @@ public enum Location {
         this.county = county;
         this.zip = zip;
     }
+
+    @Override
+    public String toString(){
+        return name() + ", " + county + ", " + zip;
+    }
 }

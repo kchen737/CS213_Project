@@ -30,7 +30,7 @@ public class Profile implements Comparable<Profile> {
     @Override
     public String toString(){
         String date = dob.toString();
-        return fname + lname + date;
+        return fname + " " +  lname + " " + date;
     }
 
     @Override

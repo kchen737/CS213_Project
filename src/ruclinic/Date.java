@@ -99,9 +99,19 @@ public class Date implements Comparable<Date>{
     public boolean leap_year(){
         boolean correct = false;
         if (year % QUADRENNIAL == 0){
-            if (day < 31 && day > 0){
-                System.out.println("leap year, correct day");
+            if (year % CENTENNIAL == 0){
+                if (year % QUATERCENTENNIAL == 0){
+                    correct = true;
+                    System.out.println("is a leap year");
+                }
+                else{
+                    correct = false;
+                    System.out.println("is not a leap year");
+                }
+            }
+            else{
                 correct = true;
+                System.out.println("is a leap year");
             }
         }
         else if (year % CENTENNIAL == 0 && year % QUATERCENTENNIAL == 0){

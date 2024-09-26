@@ -9,14 +9,24 @@ public enum Timeslot {
     SLOT6(16,15);
 
 
-
     public static final int NOON = 12;
     private final int hour;
     private final int minute;
+
     private Timeslot(int hour, int minute){
         this.hour = hour;
         this.minute = minute;
     }
 
+    @Override
+    public String toString(){
+        String hstr = String.valueOf(hour);
+        String mstr = String.valueOf(minute);
+        String time = "AM";
+        if (hour > NOON){
+            time = "PM";
+        }
+        return hstr +":" +  mstr + " " + time;
+    }
 
 }

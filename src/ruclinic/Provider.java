@@ -17,4 +17,11 @@ public enum Provider {
         this.location = location;
         this.specialty = specialty;
     }
+
+    @Override
+    public String toString(){
+        String locationStr = location.toString();
+        String specialtyStr = specialty.name();
+        return "[" + name() + ", " + locationStr + ", " + specialtyStr + "]";
+    }
 }
