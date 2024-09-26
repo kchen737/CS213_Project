@@ -73,7 +73,7 @@ public class Appointment {
         Date date1 = new Date("01/01/2020");
         Timeslot timeslot1 = Timeslot.SLOT4;
         Profile profile1 = new Profile("c", "l", date1);
-        Provider provider1 = Provider.Harper;
+        Provider provider1 = Provider.HARPER;
 
         Appointment appointment1 = new Appointment(date1, timeslot1, profile1, provider1);
         System.out.println(appointment1.toString());

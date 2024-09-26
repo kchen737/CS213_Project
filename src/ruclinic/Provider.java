@@ -1,14 +1,14 @@
 package ruclinic;
 
 public enum Provider {
-    Patel(Location.Bridgewater, Specialty.FAMILY),
-    Lim(Location.Bridgewater, Specialty.PEDIATRICIAN),
-    Zimnes(Location.Clark, Specialty.FAMILY),
-    Harper(Location.Clark, Specialty.FAMILY),
-    Kaur(Location.Princeton, Specialty.ALLERGIST),
-    Taylor(Location.Piscataway, Specialty.PEDIATRICIAN),
-    Ramesh(Location.Morristown, Specialty.ALLERGIST),
-    Ceravolo(Location.Edison, Specialty.PEDIATRICIAN);
+    PATEL(Location.BRIDGEWATER, Specialty.FAMILY),
+    LIM(Location.BRIDGEWATER, Specialty.PEDIATRICIAN),
+    ZIMNES(Location.CLARK, Specialty.FAMILY),
+    HARPER(Location.CLARK, Specialty.FAMILY),
+    KAUR(Location.PRINCETON, Specialty.ALLERGIST),
+    TAYLOR(Location.PISCATAWAY, Specialty.PEDIATRICIAN),
+    RAMESH(Location.MORRISTOWN, Specialty.ALLERGIST),
+    CERVAOLO(Location.EDISON, Specialty.PEDIATRICIAN);
 
     private final Location location;
     private final Specialty specialty;

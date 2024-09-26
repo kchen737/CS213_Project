@@ -1,12 +1,12 @@
 package ruclinic;
 
 public enum Location {
-    Bridgewater("Somerset", "08807"),
-    Edison("Middlesex", "08817"),
-    Piscataway("Middlesex", "08854"),
-    Princeton("Mercer", "08542"),
-    Morristown("Morris", "07960"),
-    Clark("Union", "07066");
+    BRIDGEWATER("Somerset", "08807"),
+    EDISON("Middlesex", "08817"),
+    PISCATAWAY("Middlesex", "08854"),
+    PRINCETON("Mercer", "08542"),
+    MORRISTOWN("Morris", "07960"),
+    CLARK("Union", "07066");
     private final String county;
     private final String zip;
 
