@@ -90,45 +90,43 @@ public class Date implements Comparable<Date>{
         return correct;
     }
 
-    private static void testisValid(){
-        Date date1 = new Date("2/30/2024");
-        System.out.println(date1.isValid());
-    }
 
 
-    public boolean leap_year(){
-        boolean correct = false;
+    public int leap_year(){
+        int isLeapYear = 0;
         if (year % QUADRENNIAL == 0){
             if (year % CENTENNIAL == 0){
                 if (year % QUATERCENTENNIAL == 0){
-                    correct = true;
+                    isLeapYear = 1;
                     System.out.println("is a leap year");
                 }
-                else{
-                    correct = false;
-                    System.out.println("is not a leap year");
-                }
             }
-            else{
-                correct = true;
+            else {
+                isLeapYear = 1;
                 System.out.println("is a leap year");
             }
         }
-        else if (year % CENTENNIAL == 0 && year % QUATERCENTENNIAL == 0){
-            if (day < 31 && day > 0 ){
-                correct = true;
-            }
-        }
-        else if (day < 30 && day >0){
-            System.out.println("not a leap year, but correct day");
-            correct = true;
-        }
-        else{
-            System.out.println("not a leap year, but incorrect day");
-            correct = false;
-        }
-        return correct;
+        return isLeapYear;
     }
+
+    public boolean leap_year_correct_days(){
+        int isLeapYear = leap_year();
+        boolean correctDays = false;
+        switch(isLeapYear){
+            case 0:
+                if (day<29 && day>0){
+                    correctDays = true;
+                }
+            case 1:
+                if (day<30 && day>0){
+                    correctDays = true;
+                }
+        }
+        return correctDays;
+    }
+
+
+
     public boolean isValid(){
         boolean bMonth = false;//checks to see which month does it belong
         boolean sMonth = false;
@@ -138,7 +136,7 @@ public class Date implements Comparable<Date>{
         }
         if (month==2){
             System.out.println("received");
-            return leap_year();
+            return leap_year_correct_days();
         }
         else {
             for (int i=0; i<7; i++){
@@ -227,18 +225,18 @@ public class Date implements Comparable<Date>{
      */
     public static void main(String args[]){
         //testMonth_OutOfRange();
-        //testDaysInFeb_Nonleap();
+        testDaysInFeb_Nonleap();
         //testCompareTo();
-        testisValid();
+        //testisValid();
 
     }
 
     /**Test case #1**/
     private static void testDaysInFeb_Nonleap(){
-        Date date = new Date("09/19/2024");
+        Date date = new Date("02/29/2014");
         boolean expectedOutput = false;
         boolean actualOutput = date.isValid();
-        boolean testing = date.isToday();
+        //boolean testing = date.isToday();
         System.out.println(actualOutput);
         /*if (expectedOutput != actualOutput){
 
@@ -250,6 +248,12 @@ public class Date implements Comparable<Date>{
         Date date2 = new Date("08/13/2013");
         System.out.println(date1.compareTo(date2));
     }
+
+    private static void testisValid(){
+        Date date1 = new Date("2/30/2023");
+        System.out.println(date1.isValid());
+    }
+
 
     public int getDay(){
         return day;
