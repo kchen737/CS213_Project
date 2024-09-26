@@ -86,10 +86,34 @@ public class Date implements Comparable<Date>{
             correct = false;
         }
 
+        return correct;
+    }
+
+    public boolean notSixMonth(){
+        boolean correct = false;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.MONTH, 6);
+
+        int sixMon_year = today.get(Calendar.YEAR);
+        int sixMon_month = today.get(Calendar.MONTH)+1;
+        int sixMon_day = today.get(Calendar.DAY_OF_MONTH);
+
+        System.out.println(sixMon_month + "/" + sixMon_day+ "/" + sixMon_year);
+
 
         return correct;
     }
 
+    public boolean beforeToday(){
+        return false;
+    }
+
+    public boolean isFuture(){
+        return false;
+    }
 
 
     public int leap_year(){
@@ -229,6 +253,7 @@ public class Date implements Comparable<Date>{
         //testCompareTo();
         //testisValid();
 
+
     }
 
     /**Test case #1**/
@@ -237,6 +262,7 @@ public class Date implements Comparable<Date>{
         boolean expectedOutput = false;
         boolean actualOutput = date.isValid();
         //boolean testing = date.isToday();
+        boolean test1 = date.notSixMonth();
         System.out.println(actualOutput);
         /*if (expectedOutput != actualOutput){
 

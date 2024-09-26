@@ -35,6 +35,20 @@ public class Appointment {
         this.provider = provider;
     }
 
+    public String returnTime(int numberOfTimeslot){
+
+        return switch (numberOfTimeslot) {
+            case 1 -> Timeslot.SLOT1.toString();
+            case 2 -> Timeslot.SLOT2.toString();
+            case 3 -> Timeslot.SLOT3.toString();
+            case 4 -> Timeslot.SLOT4.toString();
+            case 5 -> Timeslot.SLOT5.toString();
+            case 6 -> Timeslot.SLOT6.toString();
+            default -> "is not a valid time slot";
+        };
+
+    }
+
     @Override
     public boolean equals(Object obj){
         if(this==obj){
