@@ -27,6 +27,9 @@ public class Scheduler {
         if(commandLine.equals("S")){
             scheduleNewAppointment();
         }
+        if(commandLine.equals("")){
+
+        }
 
 
     }
@@ -38,8 +41,15 @@ public class Scheduler {
     public static void scheduleNewAppointment(){
         System.out.println("Enter Appointment date: form mm/dd/yyyy");
         Scanner scheduleScanner = new Scanner(System.in);
-        String enteredDate = scheduleScanner.nextLine();
-        Date scheduledDate = new Date(enteredDate);
+        Date scheduledDate = null;
+        boolean validity = false;
+        while (!validity) {
+            String enteredDate = scheduleScanner.nextLine();
+            if(!scheduledDate.isValid())System.out.println("Invalid date, enter valid date");
+            if(!scheduledDate.isToday())System.out.println("cannot schedule appointment for today, Enter another date");
+            if(!scheduledDate.satOrSun())System.out.println("Cannot schedule appointments for Weekends");
+            else validity=true;
+        }
         System.out.println("Enter Timeslot:");
         System.out.println("9:00am: 1");
         System.out.println("10:45am: 2");
@@ -55,7 +65,6 @@ public class Scheduler {
         System.out.println("Enter Date of Birth; form: mm/dd/yyyy");
         Date dateOfBirth = new Date(scheduleScanner.nextLine());
         Profile newProfile = new Profile(firstName,lastName,dateOfBirth);
-
 
 
     }
