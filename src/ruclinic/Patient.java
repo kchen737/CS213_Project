@@ -1,15 +1,18 @@
 package ruclinic;
+
 /**
-@author LBSaka
+ * @author LBSaka, Kaiming Chen
  */
 public class Patient {
     private Profile profile;
-    private  Visit visits;
+    private Visit visits;
+
     public int charge() {
-        while (visits.getNext()!=null){
+        while (visits.getNext() != null) {
             Visit newVisit = visits.getNext();
             Appointment appointment = visits.getAppointment();
             Provider provider = appointment.getProvider();
+
 
         }
         return 1;
@@ -23,6 +26,10 @@ public class Patient {
         return visits;
     }
 
+    public int getCharge() {
+        return this.charge();
+    }
+
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
@@ -32,8 +39,8 @@ public class Patient {
     }
 
     @Override
-    public boolean equals(Object obj){
-        if(obj instanceof Patient){
+    public boolean equals(Object obj) {
+        if (obj instanceof Patient) {
             Patient otherPatient = (Patient) obj;
 
             return this.profile.equals(otherPatient.profile) &&

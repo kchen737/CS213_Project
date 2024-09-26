@@ -1,5 +1,9 @@
 package ruclinic;
 
+/**
+ * @Author Kaiming Chen
+ */
+
 public class List {
 
 

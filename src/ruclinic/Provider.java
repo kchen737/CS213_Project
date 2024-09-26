@@ -22,6 +22,6 @@ public enum Provider {
     public String toString(){
         String locationStr = location.toString();
         String specialtyStr = specialty.name();
-        return "[" + name() + ", " + locationStr + ", " + specialtyStr + "]";
+        return "[" + this.name() + ", " + locationStr + ", " + specialtyStr + "]";
     }
 }
