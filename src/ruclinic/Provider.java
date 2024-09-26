@@ -18,6 +18,10 @@ public enum Provider {
         this.specialty = specialty;
     }
 
+    public int getCharge(){
+        return this.specialty.getCharge();
+    }
+
     @Override
     public String toString(){
         String locationStr = location.toString();

@@ -1,5 +1,10 @@
 package ruclinic;
 
+/**
+ * The timeslot class defines the time for scheduling an appointment
+ * @Author Kaiming Chen
+ */
+
 public enum Timeslot {
     SLOT1(9,0),
     SLOT2(10,45),
