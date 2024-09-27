@@ -10,7 +10,7 @@ package ruclinic;
  */
 
 
-public class Appointment {
+public class Appointment implements Comparable<Appointment> {
     private Date date;
     private Timeslot timeslot;
     private Profile patient;
@@ -35,6 +35,20 @@ public class Appointment {
         this.provider = provider;
     }
 
+    public String returnTime(int numberOfTimeslot){
+
+        return switch (numberOfTimeslot) {
+            case 1 -> Timeslot.SLOT1.toString();
+            case 2 -> Timeslot.SLOT2.toString();
+            case 3 -> Timeslot.SLOT3.toString();
+            case 4 -> Timeslot.SLOT4.toString();
+            case 5 -> Timeslot.SLOT5.toString();
+            case 6 -> Timeslot.SLOT6.toString();
+            default -> "is not a valid time slot";
+        };
+
+    }
+
     @Override
     public boolean equals(Object obj){
         if(this==obj){
@@ -47,8 +61,7 @@ public class Appointment {
 
         return this.date.equals(otherAppointment.date) &&
                 this.timeslot.equals(otherAppointment.timeslot) &&
-                this.patient.equals(otherAppointment.patient) &&
-                this.provider.equals(otherAppointment.provider);
+                this.patient.equals(otherAppointment.patient);
     }
 
     @Override
@@ -62,21 +75,57 @@ public class Appointment {
         return s;
     }
 
+    //Sort by appointment date, time then provider's name
+    @Override
+    public int compareTo(Appointment anotherappointment){
+        int dateComparison = this.date.compareTo(anotherappointment.date);
+        int timeComparison = this.timeslot.compareTo(anotherappointment.timeslot);
+        int providerComparison = this.provider.name().compareTo(anotherappointment.provider.name());
+
+        if (dateComparison<0){
+            return -1;
+        }
+        else if (dateComparison==0 && timeComparison <0){
+            return -1;
+        }
+        else if(dateComparison==0 && timeComparison == 0 && providerComparison<0){
+            return -1;
+        }
+        else if(dateComparison==0 && timeComparison == 0 && providerComparison==0){
+            return 0;
+        }
+
+        return 1;
+    }
 
 
     public static void main(String[] args){
 
         testToString();
+        testCompareTo();
     }
 
     private static void testToString(){
         Date date1 = new Date("01/01/2020");
         Timeslot timeslot1 = Timeslot.SLOT4;
         Profile profile1 = new Profile("c", "l", date1);
-        Provider provider1 = Provider.HARPER;
+        Provider provider1 = Provider.PATEL;
 
         Appointment appointment1 = new Appointment(date1, timeslot1, profile1, provider1);
         System.out.println(appointment1.toString());
+    }
+
+    private static void testCompareTo(){
+        Date date1 = new Date("01/01/2020");
+        Timeslot timeslot1 = Timeslot.SLOT4;
+        Profile profile1 = new Profile("c", "l", date1);
+        Provider provider1 = Provider.PATEL;
+
+        Provider provider2 = Provider.LIM;
+        Appointment appointment1 = new Appointment(date1, timeslot1, profile1, provider1);
+        Appointment appointment2 = new Appointment(date1, timeslot1, profile1, provider2);
+        int compare = appointment1.compareTo(appointment2);
+        System.out.println(compare);
     }
 
 }

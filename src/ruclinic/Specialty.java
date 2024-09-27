@@ -1,7 +1,7 @@
 package ruclinic;
 
 /**
- * Timeslot class. This Enum class defines the timeslots of a day on weekdays.
+ *
  * @Author: Kaiming Chen
  */
 public enum Specialty {
@@ -14,4 +14,9 @@ public enum Specialty {
     private Specialty(int charge) {
         this.charge = charge;
     }
+
+    public int getCharge(){
+        return this.charge;
+    }
+
 }

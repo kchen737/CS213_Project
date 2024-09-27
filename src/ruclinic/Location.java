@@ -17,6 +17,10 @@ public enum Location {
 
     @Override
     public String toString(){
-        return name() + ", " + county + ", " + zip;
+        return name() + ", " + county +" " + zip;
+    }
+
+    public String getCounty(){
+        return this.county;
     }
 }

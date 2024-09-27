@@ -18,10 +18,18 @@ public enum Provider {
         this.specialty = specialty;
     }
 
+    public int getCharge(){
+        return this.specialty.getCharge();
+    }
+
+    public String getLocation(){
+        return this.location.getCounty();
+    }
+
     @Override
     public String toString(){
         String locationStr = location.toString();
         String specialtyStr = specialty.name();
-        return "[" + name() + ", " + locationStr + ", " + specialtyStr + "]";
+        return "[" + this.name() + ", " + locationStr + ", " + specialtyStr + "]";
     }
 }
