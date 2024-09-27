@@ -9,7 +9,7 @@ public class List {
 
     private Appointment[] appointments;
     private int size; //number of appointments in the array, the indicies for the appointment will be size-1
-
+    private static int length = 0; //beginning length of the array
 
     //helper method
     private int find(Appointment appointment){
@@ -42,8 +42,8 @@ public class List {
         Timeslot timeslot = Timeslot.SLOT2;
         Profile profile = new Profile("c", "l", date);
         Provider provider = Provider.HARPER;
-        appointments[size] = appointment;
-        size++;
+        appointments[length] = appointment;
+        length++;
 
     }
 
@@ -61,7 +61,29 @@ public class List {
     }
     //ordered by patient profile, date/timeslot
     public void printByPatient(){
-
+        for(int i=0; i<size; i++){
+            for (int j=i+1; j<size; j++){
+                if(appointments[i].getProfile().compareTo(appointments[j].getProfile())>0){
+                    Appointment temp = appointments[i];
+                    appointments[i] = appointments[j];
+                    appointments[j] = temp;
+                }
+                else if(appointments[i].getProfile().compareTo(appointments[j].getProfile())==0){
+                    if(appointments[i].getDate().compareTo(appointments[j].getDate())==0){
+                        if(appointments[i].getTimeslot().compareTo(appointments[j].getTimeslot())>0){
+                            Appointment temp = appointments[i];
+                            appointments[i] = appointments[j];
+                            appointments[j] = temp;
+                        }
+                    }
+                    else if(appointments[i].getDate().compareTo(appointments[j].getDate())>0){
+                        Appointment temp = appointments[i];
+                        appointments[i] = appointments[j];
+                        appointments[j] = temp;
+                    }
+                }
+            }
+        }
     }
     //ordered by county, date/timeslot
     public void printByLocation(){

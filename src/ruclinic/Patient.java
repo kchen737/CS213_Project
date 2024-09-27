@@ -58,6 +58,10 @@ public class Patient {
         return false;
 
     }
+    @Override
+    public String toString(){
+        return profile.toString();
+    }
     public static void main(String[] args){
         testCalculatingCharge();
 
