@@ -22,6 +22,10 @@ public enum Provider {
         return this.specialty.getCharge();
     }
 
+    public String getLocation(){
+        return this.location.getCounty();
+    }
+
     @Override
     public String toString(){
         String locationStr = location.toString();

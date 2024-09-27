@@ -87,10 +87,45 @@ public class List {
     }
     //ordered by county, date/timeslot
     public void printByLocation(){
+        for(int i=0; i<size; i++){
+            for(int j=i+1; j<size; j++){
+                if(appointments[i].getProvider().getLocation().compareTo(appointments[j].getProvider().getLocation())>0){
+                    Appointment temp = appointments[i];
+                    appointments[i] = appointments[j];
+                    appointments[j] = temp;
+                }
+                else if(appointments[i].getProvider().getLocation().compareTo(appointments[j].getProvider().getLocation())==0){
+                    if (appointments[i].getDate().compareTo(appointments[j].getDate())>0){
+                        Appointment temp = appointments[i];
+                        appointments[i] = appointments[j];
+                        appointments[j] = temp;
+                    }
+                    else if(appointments[i].getDate().compareTo(appointments[j].getDate())==0){
+                        if (appointments[i].getTimeslot().compareTo(appointments[j].getTimeslot())>0){
+                            Appointment temp = appointments[i];
+                            appointments[i] = appointments[j];
+                            appointments[j] = temp;
+                        }
+
+                    }
+                }
+
+
+            }
+        }
 
     }
     //ordered by date/timeslot, provider name
     public void printByAppointment(){
+        for(int i=0; i<size; i++){
+            for(int j=i+1; j<size; j++){
+                if(appointments[i].compareTo(appointments[j])>0){
+                    Appointment temp = appointments[i];
+                    appointments[i] = appointments[j];
+                    appointments[j] = temp;
+                }
+            }
+        }
 
     }
 

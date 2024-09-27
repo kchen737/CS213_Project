@@ -19,4 +19,8 @@ public enum Location {
     public String toString(){
         return name() + ", " + county +" " + zip;
     }
+
+    public String getCounty(){
+        return this.county;
+    }
 }

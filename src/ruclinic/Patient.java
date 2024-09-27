@@ -3,7 +3,7 @@ package ruclinic;
 /**
  * @author LBSaka, Kaiming Chen
  */
-public class Patient {
+public class Patient implements Comparable<Patient>{
     private Profile profile;
     private Visit visits;
 
@@ -65,6 +65,10 @@ public class Patient {
     public static void main(String[] args){
         testCalculatingCharge();
 
+    }
+    @Override
+    public int compareTo(Patient OtherPatient){
+        return this.profile.compareTo(OtherPatient.profile);
     }
     private static void testCalculatingCharge(){
         Date date1 = new Date("01/01/2020");
