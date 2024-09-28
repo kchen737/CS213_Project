@@ -22,8 +22,11 @@ public class List {
     }
     //helper method to increase the capacity by 4
     private void grow(){
-        Appointment [] appointments = new Appointment[size+4];
-
+        Appointment [] appointment = new Appointment[size+4];
+        for(int i = 0; i<size;i++){
+            appointment[i]=this.appointments[i];
+        }
+        this.appointments=appointment;
     }
     //check before add/remove
     public boolean contains(Appointment appointment){
@@ -46,7 +49,12 @@ public class List {
         size++;
 
     }
-
+    public Appointment findAppointmentGivenDateTimeslotAndProfile(Date apptDate,Timeslot timeslot, Profile profile){
+        for (int i = 0; i < size; i++) {
+            if(appointments[i].getDate().equals(apptDate)&&appointments[i].getTimeslot().equals(timeslot)&&appointments[i].getProfile().equals(profile))return appointments[i];
+        }
+        return null;
+    }
 
 
     public void remove(Appointment appointment){
@@ -128,7 +136,21 @@ public class List {
         }
 
     }
+    public boolean providerIsAvailable(Provider provider,Date date,Timeslot timeslot){
+        for (int i = 0; i < size; i++) {
+            if(appointments[i].getProvider().equals(provider) && appointments[i].getTimeslot().equals(timeslot) && appointments[i].getDate().equals(date))return false;
+        }
+        return true;
+    }
+    public boolean patientIsAvailable(Profile profile,Date date,Timeslot timeslot){
+        for (int i = 0; i < size; i++) {
+            if(appointments[i].getProfile().equals(profile) && appointments[i].getTimeslot().equals(timeslot) && appointments[i].getDate().equals(date))return false;
+        }
+        return true;
+    }
+public void printCharges(){
 
+}
 
 
 

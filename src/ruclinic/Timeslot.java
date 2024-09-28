@@ -33,6 +33,14 @@ public enum Timeslot {
         }
         return hstr +":" +  mstr + " " + time;
     }
-
+    public static Timeslot getTimeSlot(int integer){
+        if (integer==1)return SLOT1;
+        if (integer==2)return SLOT2;
+        if (integer==3)return SLOT3;
+        if (integer==4)return SLOT4;
+        if (integer==5)return SLOT5;
+        if (integer==6)return SLOT6;
+        else return null;
+    }
 
 }

@@ -32,4 +32,18 @@ public enum Provider {
         String specialtyStr = specialty.name();
         return "[" + this.name() + ", " + locationStr + ", " + specialtyStr + "]";
     }
+
+    public static boolean isReal(String provName){
+        for(Provider provider: Provider.values()){
+            if(provider.name().equalsIgnoreCase(provName))return true;
+        }
+        return false;
+    }
+    public static Provider getProv(String provName){
+        for(Provider provider: Provider.values()){
+            if(provider.name().equalsIgnoreCase(provName))return provider;
+        }
+        return null;
+    }
+
 }
