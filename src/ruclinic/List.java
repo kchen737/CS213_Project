@@ -9,7 +9,7 @@ public class List {
 
     private Appointment[] appointments;
     private int size; //number of appointments in the array, the indicies for the appointment will be size-1
-    private static int length = 0; //beginning length of the array
+
 
     //helper method
     private int find(Appointment appointment){
@@ -18,7 +18,7 @@ public class List {
                 return i;
             }
         }
-       return 1;
+       return -1;
     }
     //helper method to increase the capacity by 4
     private void grow(){
@@ -42,8 +42,8 @@ public class List {
         Timeslot timeslot = Timeslot.SLOT2;
         Profile profile = new Profile("c", "l", date);
         Provider provider = Provider.HARPER;
-        appointments[length] = appointment;
-        length++;
+        appointments[size] = appointment;
+        size++;
 
     }
 
