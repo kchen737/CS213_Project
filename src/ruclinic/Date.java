@@ -113,30 +113,6 @@ public class Date implements Comparable<Date>{
     }
 
     public boolean isValidAppointmentDate(){
-        if(isToday()){
-            System.out.println("not today");
-        }
-        else{
-            System.out.println("today");
-        }
-        if(satOrSun()){
-            System.out.println("not sunday or sat");
-        }
-        else{
-            System.out.println("sunday or sat");
-        }
-        if(notSixMonth()){
-            System.out.println("within six month");
-        }
-        else{
-            System.out.println("not within six month");
-        }
-        if(beforeToday()){
-            System.out.println("not before today");
-        }
-        else{
-            System.out.println("before today");
-        }
         return isToday() && satOrSun() && notSixMonth() && beforeToday();
 
     }
