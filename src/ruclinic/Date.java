@@ -75,10 +75,10 @@ public class Date implements Comparable<Date>{
     public boolean satOrSun(){
         boolean correct = true;
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
+        calendar.set(year, month-1, day);
 
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
+        System.out.println("SatOrSun method: "  + dayOfWeek + " " + year + " " + month + " " + day) ;
         if(dayOfWeek == Calendar.SATURDAY){
             correct = false;
         }
@@ -94,13 +94,8 @@ public class Date implements Comparable<Date>{
         Calendar sixMonth = Calendar.getInstance();
 
         Calendar date = Calendar.getInstance();
-        date.set(year, month, day);
+        date.set(year, month-1, day);
         sixMonth.add(Calendar.MONTH, 6);
-
-        int sixMon_year = sixMonth.get(Calendar.YEAR);
-        int sixMon_month = sixMonth.get(Calendar.MONTH)+1;
-        int sixMon_day = sixMonth.get(Calendar.DAY_OF_MONTH);
-        System.out.println(sixMon_month + "/" + sixMon_day+ "/" + sixMon_year);
 
         if(date.after(sixMonth)){
             return false;
@@ -113,7 +108,7 @@ public class Date implements Comparable<Date>{
         Calendar calendar = Calendar.getInstance();
 
         Calendar date = Calendar.getInstance();
-        date.set(year, month, day);
+        date.set(year, month-1, day);
         return !date.before(calendar);
     }
 
@@ -150,7 +145,7 @@ public class Date implements Comparable<Date>{
         Calendar calendar = Calendar.getInstance();
 
         Calendar date = Calendar.getInstance();
-        date.set(year, month, day);
+        date.set(year, month-1, day);
         if (date.after(calendar)){
             return false;
         }
@@ -311,7 +306,7 @@ public class Date implements Comparable<Date>{
     }
 
     private static void testisValid(){
-        Date date1 = new Date("10/25/2024");
+        Date date1 = new Date("9/10/2024");
         System.out.println("date is " + date1.toString() + " " + date1.isValidAppointmentDate());
     }
 
