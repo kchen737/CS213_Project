@@ -75,10 +75,10 @@ public class Date implements Comparable<Date>{
     public boolean satOrSun(){
         boolean correct = true;
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
+        calendar.set(year, month-1, day);
 
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
+        System.out.println("SatOrSun method: "  + dayOfWeek + " " + year + " " + month + " " + day) ;
         if(dayOfWeek == Calendar.SATURDAY){
             correct = false;
         }
@@ -91,67 +91,66 @@ public class Date implements Comparable<Date>{
 
     public boolean notSixMonth(){
 
-        Calendar today = Calendar.getInstance();
-        today.add(Calendar.MONTH, 6);
+        Calendar sixMonth = Calendar.getInstance();
 
-        int sixMon_year = today.get(Calendar.YEAR);
-        int sixMon_month = today.get(Calendar.MONTH)+1;
-        int sixMon_day = today.get(Calendar.DAY_OF_MONTH);
-        System.out.println(sixMon_month + "/" + sixMon_day+ "/" + sixMon_year);
+        Calendar date = Calendar.getInstance();
+        date.set(year, month-1, day);
+        sixMonth.add(Calendar.MONTH, 6);
 
-        if (year>sixMon_year){
+        if(date.after(sixMonth)){
             return false;
         }
-        else if(month>sixMon_month){
-            return false;
-        }
-        else if(day>sixMon_day){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return true;
 
     }
 
     public boolean beforeToday(){
         Calendar calendar = Calendar.getInstance();
-        int year_of_today = calendar.get(Calendar.YEAR); //uses the calendar class to retrieve year of today
-        int month_of_today = calendar.get(Calendar.MONTH)+1; //uses the calendar class to retrieve month of today
-        int day_of_today = calendar.get(Calendar.DAY_OF_MONTH); //uses the calendar class to retrieve day of month of today
 
-        if (year<year_of_today){
-            return false;
-        }
-        else if(month<month_of_today){
-            return false;
-        }
-        else if(day<day_of_today){
-            return false;
+        Calendar date = Calendar.getInstance();
+        date.set(year, month-1, day);
+        return !date.before(calendar);
+    }
+
+    public boolean isValidAppointmentDate(){
+        if(isToday()){
+            System.out.println("not today");
         }
         else{
-            return true;
+            System.out.println("today");
         }
+        if(satOrSun()){
+            System.out.println("not sunday or sat");
+        }
+        else{
+            System.out.println("sunday or sat");
+        }
+        if(notSixMonth()){
+            System.out.println("within six month");
+        }
+        else{
+            System.out.println("not within six month");
+        }
+        if(beforeToday()){
+            System.out.println("not before today");
+        }
+        else{
+            System.out.println("before today");
+        }
+        return isToday() && satOrSun() && notSixMonth() && beforeToday();
+
     }
 
     public boolean isFuture(){
         Calendar calendar = Calendar.getInstance();
-        int year_of_today = calendar.get(Calendar.YEAR); //uses the calendar class to retrieve year of today
-        int month_of_today = calendar.get(Calendar.MONTH)+1; //uses the calendar class to retrieve month of today
-        int day_of_today = calendar.get(Calendar.DAY_OF_MONTH); //uses the calendar class to retrieve day of month of today
 
-        if (year>year_of_today){
+        Calendar date = Calendar.getInstance();
+        date.set(year, month-1, day);
+        if (date.after(calendar)){
             return false;
         }
-        else if(month>month_of_today){
-            return false;
-        }
-        else if(day>day_of_today){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return true;
+
     }
 
 
@@ -227,12 +226,6 @@ public class Date implements Comparable<Date>{
         return true;
     }
 
-    /**
-     * leapYear() method checks for leap year for february
-     */
-    public boolean leapYear(){
-        return true;
-    }
 
     @Override
     public boolean equals(Object obj){
@@ -288,9 +281,9 @@ public class Date implements Comparable<Date>{
      */
     public static void main(String args[]){
         //testMonth_OutOfRange();
-        testDaysInFeb_Nonleap();
+        //testDaysInFeb_Nonleap();
         //testCompareTo();
-        //testisValid();
+        testisValid();
 
 
     }
@@ -303,9 +296,7 @@ public class Date implements Comparable<Date>{
         //boolean testing = date.isToday();
         boolean test1 = date.notSixMonth();
         System.out.println(actualOutput);
-        /*if (expectedOutput != actualOutput){
 
-        }*/
     }
     /**Test case for compareTo()**/
     private static void testCompareTo(){
@@ -315,8 +306,8 @@ public class Date implements Comparable<Date>{
     }
 
     private static void testisValid(){
-        Date date1 = new Date("2/30/2023");
-        System.out.println(date1.isValid());
+        Date date1 = new Date("9/10/2024");
+        System.out.println("date is " + date1.toString() + " " + date1.isValidAppointmentDate());
     }
 
 
