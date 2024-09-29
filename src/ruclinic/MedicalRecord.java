@@ -19,4 +19,13 @@ public class MedicalRecord {
     public void setPatients(Patient[] patients) {
         this.patients = patients;
     }
+
+    public void add(Patient patient){
+        Patient [] patientList = new Patient[size+1];
+        for(int i = 0; i<size;i++){
+            patientList[i]=this.patients[i];
+        }
+        patientList[size] = patient;
+        this.patients=patientList;
+    }
 }
