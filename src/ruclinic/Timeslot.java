@@ -27,6 +27,9 @@ public enum Timeslot {
     public String toString(){
         String hstr = String.valueOf(hour);
         String mstr = String.valueOf(minute);
+        if (this.name().equals("SLOT1") || this.name().equals("SLOT5")){
+            mstr = "00";
+        }
         String time = "AM";
         if (hour > NOON){
             time = "PM";
