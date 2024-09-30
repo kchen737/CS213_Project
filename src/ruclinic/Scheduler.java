@@ -12,22 +12,12 @@ public class Scheduler {
     public void run(String[] args){
         System.out.println("Scheduler is running.");
         List list = new List();
-        while (true){
+        boolean breaker=false;
+        while (!breaker){
             Scanner scanner = new Scanner(System.in);
-            StringTokenizer commandLineInput = new StringTokenizer(scanner.toString());
-            String functionSelect = commandLineInput.nextToken();
-            if (!commandLineInput.hasMoreTokens()) {
-                if (functionSelect.equals("S")) list= scheduleNewAppointment(list);
-                else if (functionSelect.equals("C")) list=cancelAppointment(list);
-                else if (functionSelect.equals("R")) list=rescheduleAppointment(list);
-                else if (functionSelect.equals("PA")) outputA(list);
-                else if (functionSelect.equals("PP")) outputP(list);
-                else if (functionSelect.equals("PL")) outputL(list);
-                else if (functionSelect.equals("PS")) outputS(list);
-                else if (functionSelect.equals("Q")) break;
-                else System.out.println("Please enter a valid command");
-            }
-            if(commandLineInput.hasMoreTokens()){
+            while (scanner.hasNextLine()&&!breaker){
+                StringTokenizer commandLineInput = new StringTokenizer(scanner.nextLine());
+                String functionSelect = commandLineInput.nextToken();
                 if (functionSelect.equals("S")) list=scheduleNewAppointment(commandLineInput,list);
                 else if (functionSelect.equals("C")) list=cancelAppointment(commandLineInput,list);
                 else if (functionSelect.equals("R")) list=rescheduleAppointment(commandLineInput,list);
@@ -35,11 +25,12 @@ public class Scheduler {
                 else if (functionSelect.equals("PP")) outputA(list);
                 else if (functionSelect.equals("PL")) outputL(list);
                 else if (functionSelect.equals("PS")) outputS(list);
-                else if (functionSelect.equals("Q")) break;
-                else System.out.println("Please enter a valid command");
+                else if (functionSelect.equals("Q")) breaker=true;
+                else System.out.println("Invalid command!");
             }
         }
     System.out.println("Scheduler is terminated.");
+        return;
     }
 
 
@@ -47,12 +38,12 @@ public class Scheduler {
 
         new Scheduler().run(args);
     }
-
+/*
     /**
      * schedules new appointment(line by line approach)
      * @param list
      * @return
-     */
+
     public List scheduleNewAppointment(List list){
         Date scheduledDate = getAppointmentDate();
         Timeslot enteredTimeslot = getTimeslot();
@@ -67,7 +58,7 @@ public class Scheduler {
      * Should search list for appointment given only profile and date and time. Not yet feasible with list class's search and removal features.
      * @param list
      * @return list with appointment removed(if there even was one lol)
-     */
+     *
     public  List cancelAppointment(List list){
         Date scheduledDate = getAppointmentDate();
         Timeslot enteredTimeslot = getTimeslot();
@@ -81,7 +72,7 @@ public class Scheduler {
      * reschedules appointment, Line by line input
      * @param list
      * @return
-     */
+     *
     public  List rescheduleAppointment(List list){
         Date scheduledDate = getAppointmentDate();
         Timeslot enteredTimeslot = getTimeslot();
@@ -96,7 +87,7 @@ public class Scheduler {
         Appointment appointment = new Appointment(scheduledDate,getTimeslot(),profile,provider);
         return list;
     }
-
+*/
     /**
      * schedules appointment with full single line input
      *
@@ -105,19 +96,41 @@ public class Scheduler {
      * @return
      */
     public  List scheduleNewAppointment(StringTokenizer input, List list){
-        Date appointmentDate = new Date(input.nextToken());
-        if(!(!appointmentDate.beforeToday()&& !appointmentDate.isToday()&& appointmentDate.isValid()&& !appointmentDate.satOrSun())) {
-            System.out.println("Invalid date entered, returning to main menu");
+        if(input.countTokens()!=6){
+            System.out.println("Invalid command!");
             return list;
         }
-        Timeslot timeslot = Timeslot.getTimeSlot(Integer.parseInt(input.nextToken()));
+        Date appointmentDate = new Date(input.nextToken());
+        if(!dateCheck(appointmentDate)) return list;
+        String timeInput = input.nextToken();
+        Timeslot timeslot = Timeslot.getTimeSlot(Integer.parseInt(timeInput));
+        if(timeslot==(null)){
+            System.out.println(timeInput+ "is not a valid timeslot.");
+            return list;
+        }
         String fn = input.nextToken();
         String ln = input.nextToken();
         Date dob = new Date(input.nextToken());
+        if(!dob.isValid()){
+            System.out.println("Patient dob: "+dob.toString()+ "is not a valid calendar date.");
+        }
+        if(dob.isToday()|| dob.isFuture()){
+            System.out.println("Patient dob: "+dob.toString()+ " is today or a date after today");
+            return list;
+        }
         Profile profile = new Profile(fn,ln,dob);
-        Provider provider = Provider.getProv(input.nextToken());
+        String provInput = input.nextToken();
+        Provider provider = Provider.getProv(provInput);
+        if(provider==(null)){
+            System.out.println(provInput+" is not a valid time slot.");
+            return list;
+        }
+        if(!list.providerIsAvailable(provider,appointmentDate,timeslot)){
+            System.out.println(provider.toString()+" is not available at" + timeslot.toString());
+        }
         Appointment appointment = new Appointment(appointmentDate,timeslot,profile,provider);
         list.add(appointment);
+        System.out.println(appointment.toString()+" booked.");
         return list;
     }
 
@@ -128,18 +141,34 @@ public class Scheduler {
      * @return
      */
     public  List cancelAppointment(StringTokenizer input, List list){
-        Date appointmentDate = new Date(input.nextToken());
-        if(!(!appointmentDate.beforeToday()&& !appointmentDate.isToday()&& appointmentDate.isValid()&& !appointmentDate.satOrSun())) {
-            System.out.println("Invalid date entered, returning to main menu");
+        if(input.countTokens()!=4){
+            System.out.println("Invalid command.");
             return list;
         }
+        Date appointmentDate = new Date(input.nextToken());
+        if(!dateCheck(appointmentDate))return list;
         Timeslot timeslot = Timeslot.getTimeSlot(Integer.parseInt(input.nextToken()));
+        if(timeslot==null){
+            System.out.println("invalid timeslot");
+            return list;
+        }
         String fn = input.nextToken();
         String ln = input.nextToken();
         Date dob = new Date(input.nextToken());
+        if(!dob.isValid()){
+            System.out.println("Patient dob: "+dob.toString()+ "is not a valid calendar date.");
+        }
+        if(dob.isToday()|| dob.isFuture()){
+            System.out.println("Patient dob: "+dob.toString()+ " is today or a date after today");
+            return list;
+        }
         Profile profile = new Profile(fn,ln,dob);
-        if(list.findAppointmentGivenDateTimeslotAndProfile(appointmentDate,timeslot,profile)==null)return list;
+        if(list.findAppointmentGivenDateTimeslotAndProfile(appointmentDate,timeslot,profile)==null){
+            System.out.println(appointmentDate.toString()+" "+timeslot.toString()+" "+profile.toString()+" does not exist.");
+            return list;
+        }
         Appointment appointment = list.findAppointmentGivenDateTimeslotAndProfile(appointmentDate,timeslot,profile);
+        System.out.println(appointmentDate.toString()+" "+timeslot.toString()+" "+profile.toString()+" has been canceled.");
         list.remove(appointment);
         return list;
     }
@@ -152,17 +181,53 @@ public class Scheduler {
      * @return the same list with updated appointment
      */
     public  List rescheduleAppointment(StringTokenizer inputs, List list){
+        if (inputs.countTokens()!=6){
+            System.out.println("Invalid command.");
+        }
         Date date = new Date(inputs.nextToken());
+        if(!dateCheck(date)) return list;
         Timeslot timeslot = Timeslot.getTimeSlot(Integer.parseInt(inputs.nextToken()));
+        if (timeslot==null){
+            System.out.println("invalid timeslot");
+            return list;
+        }
         String fn = inputs.nextToken();
         String ln = inputs.nextToken();
         Date dob = new Date(inputs.nextToken());
+        if(!dob.isValid()){
+            System.out.println("Patient dob: "+dob.toString()+ "is not a valid calendar date.");
+        }
+        if(dob.isToday()|| dob.isFuture()){
+            System.out.println("Patient dob: "+dob.toString()+ " is today or a date after today");
+            return list;
+        }
         Profile profile = new Profile(fn,ln,dob);
         Provider provider= (list.findAppointmentGivenDateTimeslotAndProfile(date,timeslot,profile)).getProvider();
         list.remove(list.findAppointmentGivenDateTimeslotAndProfile(date,timeslot,profile));
         Appointment appointment = new Appointment(date,Timeslot.getTimeSlot(Integer.parseInt(inputs.nextToken())),profile,provider);
+        System.out.println("Rescheduled to "+ appointment.toString());
         return list;
 
+    }
+
+    public boolean dateCheck(Date appointmentDate){
+        if(!appointmentDate.isValid()) {
+            System.out.println("Appointment date: "+appointmentDate.toString()+" is not a valid calendar date.");
+            return false;
+        }
+        if(!appointmentDate.isFuture()){
+            System.out.println("Appointment date: "+ appointmentDate.toString()+" is today or a date before today.");
+            return false;
+        }
+        if(appointmentDate.satOrSun()){
+            System.out.println("Appointment date: "+appointmentDate.toString()+" is Saturday or Sunday.");
+            return false;
+        }
+        if(appointmentDate.notSixMonth()){
+            System.out.println("Appointment date: "+appointmentDate.toString()+" is not within six months.")
+            return false;
+        }
+        return true;
     }
 
     /**
