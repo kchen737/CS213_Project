@@ -9,6 +9,10 @@ public class Profile implements Comparable<Profile> {
     private String lname; //last name
     private Date dob;
 
+    public String getName(){
+        return fname + " " + lname;
+    }
+
     public Date getDob() {
         return dob;
     }
@@ -39,8 +43,8 @@ public class Profile implements Comparable<Profile> {
 
     @Override
     public int compareTo(Profile prof){
-        int lnameComparison = this.lname.compareTo(prof.lname);
-        int fnameComparison = this.fname.compareTo(prof.fname);
+        int lnameComparison = this.lname.compareToIgnoreCase(prof.lname);
+        int fnameComparison = this.fname.compareToIgnoreCase(prof.fname);
         int dobComparison = this.dob.compareTo(prof.dob);
 
         if(lnameComparison<0){

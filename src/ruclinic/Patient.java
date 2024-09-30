@@ -24,6 +24,28 @@ public class Patient implements Comparable<Patient>{
         return cost;
     }
 
+    public void removeVisit(Appointment appointment){
+        if(visits == null){
+            return;
+        }
+        if (visits.getAppointment().equals(appointment)){
+            visits = visits.getNext();
+            return;
+        }
+        Visit newVisitList = visits;
+        Visit prev = null;
+        while(newVisitList != null && !(newVisitList.getAppointment().equals(appointment))){
+            prev = newVisitList;
+            newVisitList = newVisitList.getNext();
+        }
+        if(newVisitList == null){
+            System.out.println("not found");
+            return;
+        }
+        prev.setNext(newVisitList.getNext());
+
+    }
+
     public Profile getProfile() {
         return profile;
     }
@@ -63,7 +85,8 @@ public class Patient implements Comparable<Patient>{
         return profile.toString();
     }
     public static void main(String[] args){
-        testCalculatingCharge();
+        //testCalculatingCharge();
+        //testRemoveVisit();
 
     }
     @Override
@@ -83,6 +106,26 @@ public class Patient implements Comparable<Patient>{
         Patient patient1 = new Patient(profile1, visit1);
         int cost = patient1.charge();
         System.out.println(cost);
+    }
+
+    public static void testRemoveVisit(){
+        Date date1 = new Date("01/01/2020");
+        Date date2 = new Date("04/03/2020");
+        Date date3 = new Date("01/01/2021");
+        Timeslot timeslot1 = Timeslot.SLOT4;
+        Profile profile1 = new Profile("c", "l", date1);
+        Provider provider1 = Provider.HARPER;
+
+        Appointment appointment1 = new Appointment(date1, timeslot1, profile1, provider1);
+        Appointment appointment2 = new Appointment(date1, timeslot1, profile1, provider1);
+        Appointment appointment3 = new Appointment(date1, timeslot1, profile1, provider1);
+
+        Visit visit = new Visit(appointment2, null);
+        Visit visit1 = new Visit(appointment1, visit);
+        Visit visit2 = new Visit(appointment3, visit1);
+        Patient patient1 = new Patient(profile1, visit2);
+        patient1.removeVisit(appointment1);
+
     }
 }
 

@@ -56,7 +56,6 @@ public class Date implements Comparable<Date>{
      * @return
      */
     public boolean isToday(){
-        boolean correct = true;
         Calendar calendar = Calendar.getInstance();
 
         int year_of_today = calendar.get(Calendar.YEAR); //uses the calendar class to retrieve year of today
@@ -64,32 +63,31 @@ public class Date implements Comparable<Date>{
         int day_of_today = calendar.get(Calendar.DAY_OF_MONTH); //uses the calendar class to retrieve day of month of today
 
         if (year_of_today == year && month_of_today == month && day_of_today == day){
-            correct = false;
-            System.out.println("false");
+            return true;
         }
-
-        System.out.println(month_of_today + " " + day_of_today + " " + year_of_today);
-        return correct;
+        return false;
     }
 
-    public boolean satOrSun(){
+    public String satOrSun(){
         boolean correct = true;
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month-1, day);
 
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        System.out.println("SatOrSun method: "  + dayOfWeek + " " + year + " " + month + " " + day) ;
+        //System.out.println("SatOrSun method: "  + dayOfWeek + " " + year + " " + month + " " + day) ;
         if(dayOfWeek == Calendar.SATURDAY){
             correct = false;
+            return (" is Saturday or Sunday.");
         }
         else if(dayOfWeek == Calendar.SUNDAY){
             correct = false;
-        }
+            return (" is Saturday or Sunday.");
 
-        return correct;
+        }
+        return null;
     }
 
-    public boolean notSixMonth(){
+    public String notSixMonth(){
 
         Calendar sixMonth = Calendar.getInstance();
 
@@ -98,34 +96,53 @@ public class Date implements Comparable<Date>{
         sixMonth.add(Calendar.MONTH, 6);
 
         if(date.after(sixMonth)){
-            return false;
+            return (" is not within six months.");
         }
-        return true;
+        return null;
 
     }
 
-    public boolean beforeToday(){
+    public String beforeToday(){
         Calendar calendar = Calendar.getInstance();
 
         Calendar date = Calendar.getInstance();
         date.set(year, month-1, day);
-        return !date.before(calendar);
+        if (date.before(calendar)){
+            return (" is today or a date before today.");
+        }
+        else if (isToday()){
+            return (" is today or a date before today");
+        }
+        return null;
     }
 
-    public boolean isValidAppointmentDate(){
-        return isToday() && satOrSun() && notSixMonth() && beforeToday();
+    public String isValidAppointmentDate(){
+        if(beforeToday()!=null){
+            return beforeToday();
+        }
+        if(notSixMonth()!=null){
+            return notSixMonth();
+        }
+        if(satOrSun()!=null){
+            return satOrSun();
+        }
+        return null;
 
     }
 
-    public boolean isFuture(){
+    public String isFuture(){
         Calendar calendar = Calendar.getInstance();
 
         Calendar date = Calendar.getInstance();
         date.set(year, month-1, day);
         if (date.after(calendar)){
-            return false;
+            return (" is today or a date after today.");
+
         }
-        return true;
+        if (isToday()){
+            return (" is today or a date after today.");
+        }
+        return null;
 
     }
 
@@ -141,7 +158,6 @@ public class Date implements Comparable<Date>{
             }
             else {
                 isLeapYear = 1;
-                System.out.println("is a leap year");
             }
         }
         return isLeapYear;
@@ -153,14 +169,16 @@ public class Date implements Comparable<Date>{
         switch(isLeapYear){
             case 0:
                 if (day<29 && day>0){
-                    correctDays = true;
+                    return true;
                 }
             case 1:
                 if (day<30 && day>0){
-                    correctDays = true;
+                    return true;
                 }
         }
-        return correctDays;
+        //System.out.println("is not a valid calendar date.");
+        return false;
+        //return ("is not a valid calendar date.");
     }
 
 
@@ -171,6 +189,7 @@ public class Date implements Comparable<Date>{
         System.out.println(month+ " "+ day+" "+ year);
         if (year<1900) {
             return false;
+            //return ("is not a valid calendar date. ");
         }
         if (month==2){
             System.out.println("received");
@@ -181,6 +200,7 @@ public class Date implements Comparable<Date>{
                 if(month == bigMonth[i]){
                     bMonth = true;
                     if(day>31 || day<1){
+                        //System.out.println("is not a valid calendar date.");
                         return false;
                     }
                 }
@@ -190,13 +210,16 @@ public class Date implements Comparable<Date>{
                     if(month == smallMonth[i]){
                         sMonth = true;
                         if(day>30 || day<1){
+                            //System.out.println("is not a valid calendar date.");
                             return false;
+                            //return ("is not a valid calendar date. ");
                         }
                     }
                 }
             }
         }
         if (!sMonth && !bMonth){
+            //System.out.println("is not a valid calendar date.");
             return false;
         }
         return true;
@@ -227,25 +250,21 @@ public class Date implements Comparable<Date>{
     public int compareTo(Date anotherDate){
         if (this.year == anotherDate.year && this.month == anotherDate.month && this.day == anotherDate.day) return 0;
         if (this.year>anotherDate.year){
-            System.out.println("year is larger");
             return 1;
         }
         else if(this.month>anotherDate.month){
             if (this.year == anotherDate.year){
-                System.out.println("year is the same, month is larger");
                 return 1;
             }
             else return -1;
         }
         else if(this.day>anotherDate.day){
             if (this.year == anotherDate.year && this.month == anotherDate.month){
-                System.out.println("year, month are the same, day is larger");
                 return 1;
             }
             else return -1;
         }
         else{
-            System.out.println("year is smaller");
             return -1;
         }
         //return 1;
@@ -257,20 +276,20 @@ public class Date implements Comparable<Date>{
      */
     public static void main(String args[]){
         //testMonth_OutOfRange();
-        //testDaysInFeb_Nonleap();
+        testDaysInFeb_Nonleap();
         //testCompareTo();
-        testisValid();
+        //testisValid();
 
 
     }
 
     /**Test case #1**/
     private static void testDaysInFeb_Nonleap(){
-        Date date = new Date("02/29/2014");
+        Date date = new Date("09/31/2024");
         boolean expectedOutput = false;
         boolean actualOutput = date.isValid();
         //boolean testing = date.isToday();
-        boolean test1 = date.notSixMonth();
+        String test1 = date.notSixMonth();
         System.out.println(actualOutput);
 
     }

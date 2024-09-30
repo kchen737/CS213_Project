@@ -1,6 +1,11 @@
 package ruclinic;
 
 /**
+ *
+ *
+ *
+ *
+ * @Author Kaiming Chen
  * You can add necessary constants, constructors, and methods. However, you CANNOT change or add
  * instance variables. -2 points for each violation.
  * You MUST override equals(), toString() and the comapreTo() methods, with the @Override tags. -2
@@ -16,6 +21,7 @@ public class Appointment implements Comparable<Appointment> {
     private Profile patient;
     private Provider provider;
 
+    //Getter and setter methods for each instance variables
     public Date getDate(){
         return date;
     }
@@ -80,8 +86,7 @@ public class Appointment implements Comparable<Appointment> {
     public int compareTo(Appointment anotherappointment){
         int dateComparison = this.date.compareTo(anotherappointment.date);
         int timeComparison = this.timeslot.compareTo(anotherappointment.timeslot);
-        int providerComparison = this.provider.name().compareTo(anotherappointment.provider.name());
-
+        int providerComparison = this.provider.name().compareToIgnoreCase(anotherappointment.provider.name());
         if (dateComparison<0){
             return -1;
         }

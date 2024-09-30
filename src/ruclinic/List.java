@@ -10,6 +10,16 @@ public class List {
     private Appointment[] appointments;
     private int size; //number of appointments in the array, the indicies for the appointment will be size-1
 
+    public List(Appointment[] appointments, int size){
+        this.appointments = appointments;
+        this.size = size;
+    }
+    public int getSize(){
+        return this.size;
+    }
+    public Appointment[] getAppointmentList(){
+        return this.appointments;
+    }
 
     //helper method
     private int find(Appointment appointment){
@@ -18,43 +28,43 @@ public class List {
                 return i;
             }
         }
-       return -1;
+        return -1;
     }
     //helper method to increase the capacity by 4
     private void grow(){
         Appointment [] appointment = new Appointment[size+4];
-        for(int i = 0; i<size;i++){
+        for(int i = 0; i<=size;i++){
             appointment[i]=this.appointments[i];
         }
         this.appointments=appointment;
     }
+
+
     //check before add/remove
     public boolean contains(Appointment appointment){
-        boolean check = true;
+        boolean check = false;
         for(int i=0; i<size; i++){
+
             if(appointment.equals(appointments[i])){
-            }
-            else{
-                check = false;
+                check = true;
+                break;
             }
         }
         return check;
     }
     public void add(Appointment appointment){
-        Date date = new Date("01/01/2020");
-        Timeslot timeslot = Timeslot.SLOT2;
-        Profile profile = new Profile("c", "l", date);
-        Provider provider = Provider.HARPER;
-        appointments[size] = appointment;
+        this.appointments[size] = appointment;
+        if (this.size<appointments.length){
+            grow();
+        }
         size++;
 
     }
-    public Appointment findAppointmentGivenDateTimeslotAndProfile(Date apptDate,Timeslot timeslot, Profile profile){
-        for (int i = 0; i < size; i++) {
-            if(appointments[i].getDate().equals(apptDate)&&appointments[i].getTimeslot().equals(timeslot)&&appointments[i].getProfile().equals(profile))return appointments[i];
-        }
-        return null;
+
+    public void initiateList(){
+        this.appointments = new Appointment[10];
     }
+
 
 
     public void remove(Appointment appointment){
@@ -65,6 +75,12 @@ public class List {
                 size--;
             }
         }
+        /*
+        int index = find(appointment);
+        appointments[index] = null;
+        appointments[index] = appointments[size-1];
+        size--;
+        */
 
     }
     //ordered by patient profile, date/timeslot
@@ -136,22 +152,48 @@ public class List {
         }
 
     }
-    public boolean providerIsAvailable(Provider provider,Date date,Timeslot timeslot){
-        for (int i = 0; i < size; i++) {
-            if(appointments[i].getProvider().equals(provider) && appointments[i].getTimeslot().equals(timeslot) && appointments[i].getDate().equals(date))return false;
+
+
+    public int providerIsAvailable(Appointment appointment){
+        if (appointments[0]!=null){
+            for (int i = 0; i < size; i++) {
+                if(appointments[i].getProvider().name().equals(appointment.getProvider().name()) && appointments[i].getTimeslot().equals(appointment.getTimeslot()) && appointments[i].getDate().equals(appointment.getDate())){
+                    System.out.println("provider is not available " + appointment.getTimeslot().ordinal());
+                    return appointment.getTimeslot().ordinal()+1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public boolean patientIsAvailable(Appointment appointment){
+        if (appointments[0]!=null){
+            for (int i = 0; i < size; i++) {
+                if(appointments[i].getProfile().equals(appointment.getProfile()) && appointments[i].getTimeslot().equals(appointment.getTimeslot()) && appointments[i].getDate().equals(appointment.getDate()))return false;
+            }
         }
         return true;
     }
-    public boolean patientIsAvailable(Profile profile,Date date,Timeslot timeslot){
-        for (int i = 0; i < size; i++) {
-            if(appointments[i].getProfile().equals(profile) && appointments[i].getTimeslot().equals(timeslot) && appointments[i].getDate().equals(date))return false;
+
+    public Appointment findAppointmentGivenDateTimeslotAndProfile(Date apptDate,Timeslot timeslot, Profile profile){
+        if(appointments[0]!=null){
+            for (int i = 0; i < size; i++) {
+                if(appointments[i].getDate().equals(apptDate)&&appointments[i].getTimeslot().equals(timeslot)&&appointments[i].getProfile().equals(profile))return appointments[i];
+            }
+            return null;
         }
-        return true;
+        return null;
     }
-public void printCharges(){
 
-}
-
+    public void main(String[] args){
+        Date date = new Date("01/01/2020");
+        Timeslot timeslot = Timeslot.SLOT2;
+        Profile profile = new Profile("c", "l", date);
+        Provider provider = Provider.HARPER;
+        Appointment appointment1 = new Appointment(date, timeslot, profile, provider);
+        size = 1;
+        add(appointment1);
+    }
 
 
 }
