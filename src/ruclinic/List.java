@@ -6,7 +6,6 @@ package ruclinic;
 
 public class List {
 
-
     private Appointment[] appointments;
     private int size; //number of appointments in the array, the indicies for the appointment will be size-1
 
@@ -149,7 +148,9 @@ public class List {
         return true;
     }
 public void printCharges(){
+    for (int i = 0;i<size;i++){
 
+    }
 }
 
 

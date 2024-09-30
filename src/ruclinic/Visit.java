@@ -27,4 +27,12 @@ public class Visit {
         }
         return false;
     }
+    public void setLast(Appointment appointment){
+        Visit visit = this.next;
+        while (visit.getNext()!=null){
+            visit=visit.getNext();
+        }
+        visit.setNext(new Visit(appointment,null));
+        return;
+    }
 }

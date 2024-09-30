@@ -9,6 +9,7 @@ import java.util.Scanner;
  */
 
 public class Scheduler {
+    public static MedicalRecord medicalRecord= new MedicalRecord();
     public void run(String[] args){
         System.out.println("Scheduler is running.");
         List list = new List();
@@ -130,6 +131,7 @@ public class Scheduler {
         }
         Appointment appointment = new Appointment(appointmentDate,timeslot,profile,provider);
         list.add(appointment);
+
         System.out.println(appointment.toString()+" booked.");
         return list;
     }
@@ -224,7 +226,7 @@ public class Scheduler {
             return false;
         }
         if(appointmentDate.notSixMonth()){
-            System.out.println("Appointment date: "+appointmentDate.toString()+" is not within six months.")
+            System.out.println("Appointment date: "+appointmentDate.toString()+" is not within six months.");
             return false;
         }
         return true;
@@ -236,6 +238,7 @@ public class Scheduler {
      */
     public  void outputA(List list){
         list.printByAppointment();
+        return;
     }
 
     /**
@@ -244,6 +247,7 @@ public class Scheduler {
      */
     public  void outputP(List list){
         list.printByPatient();
+        return;
     }
 
     /**
@@ -252,6 +256,7 @@ public class Scheduler {
      */
     public  void outputL(List list){
         list.printByLocation();
+        return;
     }
 
     /**
@@ -311,6 +316,7 @@ public class Scheduler {
             if(date.isValid()&&date.isFuture()&& !date.satOrSun()&& !date.notSixMonth())return date;
             System.out.println("Invalid date, try again");
         }
+
     }
     public Profile getProfile(){
         System.out.println("enter First name");

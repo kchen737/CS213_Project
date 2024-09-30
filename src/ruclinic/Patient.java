@@ -24,6 +24,7 @@ public class Patient implements Comparable<Patient>{
         return cost;
     }
 
+
     public Profile getProfile() {
         return profile;
     }
@@ -58,6 +59,9 @@ public class Patient implements Comparable<Patient>{
         return false;
 
     }
+
+
+
     @Override
     public String toString(){
         return profile.toString();
