@@ -8,7 +8,7 @@ public enum Provider {
     KAUR(Location.PRINCETON, Specialty.ALLERGIST),
     TAYLOR(Location.PISCATAWAY, Specialty.PEDIATRICIAN),
     RAMESH(Location.MORRISTOWN, Specialty.ALLERGIST),
-    CERVAOLO(Location.EDISON, Specialty.PEDIATRICIAN);
+    CERAVOLO(Location.EDISON, Specialty.PEDIATRICIAN);
 
     private final Location location;
     private final Specialty specialty;
@@ -32,18 +32,4 @@ public enum Provider {
         String specialtyStr = specialty.name();
         return "[" + this.name() + ", " + locationStr + ", " + specialtyStr + "]";
     }
-
-    public static boolean isReal(String provName){
-        for(Provider provider: Provider.values()){
-            if(provider.name().equalsIgnoreCase(provName))return true;
-        }
-        return false;
-    }
-    public static Provider getProv(String provName){
-        for(Provider provider: Provider.values()){
-            if(provider.name().equalsIgnoreCase(provName))return provider;
-        }
-        return null;
-    }
-
 }

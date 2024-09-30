@@ -6,11 +6,11 @@ package ruclinic;
  */
 
 public enum Timeslot {
-    SLOT1(9,0),
+    SLOT1(9,00),
     SLOT2(10,45),
     SLOT3(11,15),
     SLOT4(13,30),
-    SLOT5(15,0),
+    SLOT5(15,00),
     SLOT6(16,15);
 
 
@@ -23,6 +23,18 @@ public enum Timeslot {
         this.minute = minute;
     }
 
+    public String checkValid(int number){
+        return switch (number) {
+            case 1 -> Timeslot.SLOT1.toString();
+            case 2 -> Timeslot.SLOT2.toString();
+            case 3 -> Timeslot.SLOT3.toString();
+            case 4 -> Timeslot.SLOT4.toString();
+            case 5 -> Timeslot.SLOT5.toString();
+            case 6 -> Timeslot.SLOT6.toString();
+            default -> "is not a valid time slot";
+        };
+    }
+
     @Override
     public String toString(){
         String hstr = String.valueOf(hour);
@@ -32,18 +44,12 @@ public enum Timeslot {
         }
         String time = "AM";
         if (hour > NOON){
+            int newhour = hour-12;
+            hstr = String.valueOf(newhour);
             time = "PM";
         }
         return hstr +":" +  mstr + " " + time;
     }
-    public static Timeslot getTimeSlot(int integer){
-        if (integer==1)return SLOT1;
-        if (integer==2)return SLOT2;
-        if (integer==3)return SLOT3;
-        if (integer==4)return SLOT4;
-        if (integer==5)return SLOT5;
-        if (integer==6)return SLOT6;
-        else return null;
-    }
+
 
 }
