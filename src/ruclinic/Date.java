@@ -21,6 +21,8 @@ public class Date implements Comparable<Date>{
     public static final int QUATERCENTENNIAL = 400;
     public int validMaxDateOfLargeMonth = 31;
     public int validMaxDateOfSmallMonth = 30;
+    public int validMaxDateOfFebruaryNonLeapYear = 28;
+    public int getValidMaxDateOfFebruaryLeapYear = 29;
     public int[] smallMonth = {4,6,9,11};
     public int[] bigMonth = {1,3,5,7,8,10,12};
 
@@ -276,9 +278,9 @@ public class Date implements Comparable<Date>{
      */
     public static void main(String args[]){
         //testMonth_OutOfRange();
-        testDaysInFeb_Nonleap();
+        //testDaysInFeb_Nonleap();
         //testCompareTo();
-        //testisValid();
+        testisValid();
 
 
     }
@@ -303,6 +305,19 @@ public class Date implements Comparable<Date>{
     private static void testisValid(){
         Date date1 = new Date("9/10/2024");
         System.out.println("date is " + date1.toString() + " " + date1.isValidAppointmentDate());
+        Date date2 = new Date("9/40/2024");
+        System.out.println("date is " + date2.toString() + " " + date2.isValidAppointmentDate());
+        Date date3 = new Date("13/11/2024");
+        System.out.println("date is " + date3.toString() + " " + date3.isValidAppointmentDate());
+        Date date4 = new Date("02/29/2024");
+        System.out.println("date is " + date4.toString() + " " + date4.isValidAppointmentDate());
+        Date date5 = new Date("02/29/2025");
+        System.out.println("date is " + date5.toString() + " " + date5.isValidAppointmentDate());
+        Date date6 = new Date("");
+        System.out.println("date is " + date6.toString() + " " + date6.isValidAppointmentDate());
+        return;
+
+
     }
 
 
