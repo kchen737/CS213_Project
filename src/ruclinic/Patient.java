@@ -25,6 +25,10 @@ public class Patient implements Comparable<Patient>{
         return cost;
     }
 
+    /**
+     * Used to remove visit from the linkedlist
+     * @param appointment
+     */
     public void removeVisit(Appointment appointment){
         if(visits == null){
             return;
@@ -46,29 +50,61 @@ public class Patient implements Comparable<Patient>{
 
     }
 
+    /**
+     * get profile
+     * @return profile
+     */
     public Profile getProfile() {
         return profile;
     }
 
+    /**
+     * get visit
+     * @return visit
+     */
     public Visit getVisits() {
         return visits;
     }
 
+    /**
+     * get charge
+     * @return integer
+     */
     public int getCharge() {
         return this.charge();
     }
 
+    /**
+     * set profile
+     * @param profile
+     */
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
 
+    /**
+     * set visits
+     * @param visits
+     */
     public void setVisits(Visit visits) {
         this.visits = visits;
     }
+
+    /**
+     * Initiate patient
+     * @param profile
+     * @param visits
+     */
     public Patient(Profile profile, Visit visits){
         this.profile = profile;
         this.visits = visits;
     }
+
+    /**
+     * Overriding equals method to see if two patients are the same
+     * @param obj patient
+     * @return boolean of true or false
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Patient) {
@@ -80,6 +116,11 @@ public class Patient implements Comparable<Patient>{
         return false;
 
     }
+
+    /**
+     * Overriding toString() to return patient in correct format
+     * @return string of patient
+     */
     @Override
     public String toString(){
         return profile.toString();
@@ -89,10 +130,17 @@ public class Patient implements Comparable<Patient>{
         //testRemoveVisit();
 
     }
+
+    /**
+     * Overriding compareTo
+     * @param OtherPatient the object to be compared.
+     * @return integer
+     */
     @Override
     public int compareTo(Patient OtherPatient){
         return this.profile.compareTo(OtherPatient.profile);
     }
+    //test case to check charge
     private static void testCalculatingCharge(){
         Date date1 = new Date("01/01/2020");
         Timeslot timeslot1 = Timeslot.SLOT4;
@@ -107,7 +155,7 @@ public class Patient implements Comparable<Patient>{
         int cost = patient1.charge();
         System.out.println(cost);
     }
-
+    //test case to test remove visit
     public static void testRemoveVisit(){
         Date date1 = new Date("01/01/2020");
         Date date2 = new Date("04/03/2020");

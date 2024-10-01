@@ -19,6 +19,10 @@ public enum Specialty {
         this.charge = charge;
     }
 
+    /**
+     * get charge
+     * @return integer
+     */
     public int getCharge(){
         return this.charge;
     }

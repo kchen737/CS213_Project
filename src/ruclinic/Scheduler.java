@@ -530,7 +530,7 @@ public class Scheduler {
         Provider provider = Provider.HARPER;
         Appointment appointment1 = new Appointment(date, timeslot, profile, provider);
     }
-
+    //test case
     public static void testRemoveVisit(){
         Date date1 = new Date("01/01/2020");
         Date date2 = new Date("04/03/2020");

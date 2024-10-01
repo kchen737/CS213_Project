@@ -10,13 +10,26 @@ public class Profile implements Comparable<Profile> {
     private String lname; //last name
     private Date dob;
 
+    /**
+     * getName()
+     * @return String
+     */
     public String getName(){
         return fname + " " + lname;
     }
 
+    /**
+     * getDob()
+     * @return date
+     */
     public Date getDob() {
         return dob;
     }
+
+    /**
+     * set date of birth
+     * @param dob1
+     */
     public void setDob(Date dob1){
         this.dob=dob1;
     }
@@ -26,6 +39,12 @@ public class Profile implements Comparable<Profile> {
         lname= ln;
         dob= dateOfBirth;
     }
+
+    /**
+     * Overriding equals method to check if both of the profile
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Profile){
@@ -37,12 +56,21 @@ public class Profile implements Comparable<Profile> {
         return false;
     }
 
+    /**
+     * Overriding toString method to print firstname, lastname and date
+     * @return String
+     */
     @Override
     public String toString(){
         String date = dob.toString();
         return fname + " " +  lname + " " + date;
     }
 
+    /**
+     * Overriding compareTo method to see if the two profile are the same or not
+     * @param prof the object to be compared.
+     * @return integer
+     */
     @Override
     public int compareTo(Profile prof){
         int lnameComparison = this.lname.compareToIgnoreCase(prof.lname);
