@@ -14,7 +14,6 @@ public class Patient implements Comparable<Patient>{
             Appointment appointment = visits.getAppointment();
             Provider provider = appointment.getProvider();
             cost = cost + provider.getCharge();
-            System.out.println(cost);
             Visit newVisit = visits.getNext();
             if (newVisit == null){
                 break;

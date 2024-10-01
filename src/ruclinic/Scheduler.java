@@ -119,7 +119,6 @@ public class Scheduler {
         if(valid){
             String validStr = appointmentDate.isValidAppointmentDate();
             if (validStr != null){
-                //System.out.println("Appointment date: "+ date + valid);
                 outputStr = outputStr.append("Appointment date: " + date + validStr + "\n");
                 return null;
             }
@@ -185,7 +184,6 @@ public class Scheduler {
             return Provider.ZIMNES;
         }
         outputStr = outputStr.append(name+ " - provider doesn't exist.\n");
-        //System.out.println(name+ " - provider doesn't exist.\n")
         return null;
     }
     public static List initialList(){
@@ -335,11 +333,11 @@ public class Scheduler {
             }
             //add to outputStr
             outputStr = outputStr.append(appointment.getDate().toString() + " " + appointment.getTimeslot().toString() + " " + appointment.getProfile().toString() + " has been canceled.\n");
-            System.out.println(appointment.getDate().toString() + " " + appointment.getTimeslot().toString() + " " + appointment.getProfile().toString() + " has been canceled.\n");
+           // System .out.println(appointment.getDate().toString() + " " + appointment.getTimeslot().toString() + " " + appointment.getProfile().toString() + " has been canceled.\n");
         }
         else{
             outputStr = outputStr.append(appointment.getDate().toString() + " " + appointment.getTimeslot().toString() + " " + appointment.getProfile().toString() + " does not exist.\n");
-            System.out.println(appointment.getDate().toString() + " " + appointment.getTimeslot().toString() + " " + appointment.getProfile().toString() + " does not exist.\n");
+            //System.out.println(appointment.getDate().toString() + " " + appointment.getTimeslot().toString() + " " + appointment.getProfile().toString() + " does not exist.\n");
         }
 
     }

@@ -98,29 +98,7 @@ public class Profile implements Comparable<Profile> {
     return;
     }
     private static void testCompareTo(){
-        Date date1 = new Date("3/12/2023");
-        Date date2 = new Date("3/12/2024");
-        Date date3 = new Date("09/21/2003");
-        Date date4 = new Date("12/25/0000");
-        Profile profile1 = new Profile("kaiming", "chen", date1);
-        Profile profile2 = new Profile("kaiminy", "chen", date2);
-        Profile profile3 = new Profile("Luke", "Busacca", date3);
-        Profile profile4 = new Profile("Dwayne", "Johnson", date2);
-        Profile profile5 = new Profile("Jesus", "Christ", date4);
-        int compare = profile1.compareTo(profile2);
-        System.out.println(compare);
-        compare = profile1.compareTo(profile1);
-        System.out.println(compare);
-        compare = profile1.compareTo(profile3);
-        System.out.println(compare);
-        compare = profile3.compareTo(profile4);
-        System.out.println(compare);
-        compare = profile4.compareTo(profile5);
-        System.out.println(compare);
-        compare = profile5.compareTo(profile4);
-        System.out.println(compare);
-        compare = profile2.compareTo(profile1);
-        System.out.println(compare);
+
 
     return;
     }

@@ -20,15 +20,15 @@ public class Date implements Comparable<Date>{
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
-    public static final int validMaxDateOfLargeMonth = 31;
-    public static final int validMaxDateOfSmallMonth = 30;
-    public static final int getValidMaxDateOfFebruaryLeapYear = 29;
-    public static final int minimumDayOfMonth = 1;
-    public static final int invalidDayOfMonth = 0;
-    public static final int nineteeHundred = 1900;
+    public static final int VALIDMAXDATEOFLARGEMONTH = 31;
+    public static final int VALIDMAXDATEOFSMALLMONTH = 30;
+    public static final int GETVALIDMAXDAYOFFEBURARY = 29;
+    public static final int MINIMUMDAYOFMONTH = 1;
+    public static final int INVALIDDAYOFMONTH = 0;
+    public static final int NINETEE_HUNDRED = 1900;
     public static final int lengthOfSmallMonth = 4;
-    public static final int lengthOfLargeMonth = 7;
-    public static final int feburary = 2;
+    public static final int LENGTH_OF_LARGE_MONTH = 7;
+    public static final int FEBURARY = 2;
     public int[] smallMonth = {4,6,9,11};
     public int[] bigMonth = {1,3,5,7,8,10,12};
 
@@ -201,11 +201,11 @@ public class Date implements Comparable<Date>{
         boolean correctDays = false;
         switch(isLeapYear){
             case 0:
-                if (day<getValidMaxDateOfFebruaryLeapYear && day>invalidDayOfMonth){
+                if (day< GETVALIDMAXDAYOFFEBURARY && day> INVALIDDAYOFMONTH){
                     return true;
                 }
             case 1:
-                if (day<validMaxDateOfSmallMonth && day>invalidDayOfMonth){
+                if (day< VALIDMAXDATEOFSMALLMONTH && day> INVALIDDAYOFMONTH){
                     return true;
                 }
         }
@@ -226,17 +226,17 @@ public class Date implements Comparable<Date>{
         boolean bMonth = false;//checks to see which month does it belong
         boolean sMonth = false;
         System.out.println(month+ " "+ day+" "+ year);
-        if (year<nineteeHundred) {
+        if (year< NINETEE_HUNDRED) {
             return false;
         }
-        if (month==feburary){
+        if (month== FEBURARY){
             return leap_year_correct_days();
         }
         else {
-            for (int i=0; i<lengthOfLargeMonth; i++){
+            for (int i = 0; i< LENGTH_OF_LARGE_MONTH; i++){
                 if(month == bigMonth[i]){
                     bMonth = true;
-                    if(day>validMaxDateOfLargeMonth || day<minimumDayOfMonth){
+                    if(day>VALIDMAXDATEOFLARGEMONTH || day<MINIMUMDAYOFMONTH){
                         return false;
                     }
                 }
@@ -245,7 +245,7 @@ public class Date implements Comparable<Date>{
                 for (int i=0; i<lengthOfSmallMonth; i++){
                     if(month == smallMonth[i]){
                         sMonth = true;
-                        if(day>validMaxDateOfSmallMonth || day<minimumDayOfMonth){
+                        if(day> VALIDMAXDATEOFSMALLMONTH || day<MINIMUMDAYOFMONTH){
                             return false;
                         }
                     }
