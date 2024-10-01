@@ -150,6 +150,10 @@ public class Date implements Comparable<Date>{
 
     }
 
+    /**
+     * Checks to see if the date is a future date
+     * @return a string for output
+     */
     public String isFuture(){
         Calendar calendar = Calendar.getInstance();
 
@@ -164,6 +168,11 @@ public class Date implements Comparable<Date>{
         return null;
 
     }
+
+    /**
+     * Checks to see if the year is a leap year or not
+     * @return integer for if it is leap year 1, not a leap year 0
+     */
 
 
     public int leap_year(){
@@ -181,6 +190,11 @@ public class Date implements Comparable<Date>{
         return isLeapYear;
     }
 
+    /**
+     * Checks to see if there are correct amount of days for leap and non-leap year
+     * @return a boolean value to check if true it is correct days for leap or non-leap year
+     * false for incorrect year of leap or non-leap year
+     */
     public boolean leap_year_correct_days(){
         int isLeapYear = leap_year();
         boolean correctDays = false;
@@ -198,7 +212,15 @@ public class Date implements Comparable<Date>{
     }
 
 
-
+    /**
+     * Checks to see if the date is valid based on
+     * if it is larger than 1900
+     * if there are correct number of days in leap year
+     * if there are correct days in each month
+     * if the month is correct
+     * @return a boolean to see if the date is valid, true for valid and false for nonvalid
+     *
+     */
     public boolean isValid(){
         boolean bMonth = false;//checks to see which month does it belong
         boolean sMonth = false;
@@ -235,7 +257,11 @@ public class Date implements Comparable<Date>{
         return true;
     }
 
-
+    /**
+     * Checks to see if the dates are equal based on year, month and day
+     * @param obj
+     * @return a true or false for if the dates are equal
+     */
     @Override
     public boolean equals(Object obj){
 
@@ -248,6 +274,10 @@ public class Date implements Comparable<Date>{
         return false;
     }
 
+    /**
+     * write date in mm/dd/yyyy format
+     * @return a string value of date
+     */
     @Override
     public String toString(){
         String dayStr = String.valueOf(day);
@@ -256,6 +286,11 @@ public class Date implements Comparable<Date>{
         return monthStr + '/' + dayStr + '/' + yearStr;
     }
 
+    /**
+     * if the date is larger or smaller or equal to each other
+     * @param anotherDate the object to be compared.
+     * @return integer value for compareTo
+     */
     @Override
     public int compareTo(Date anotherDate){
         if (this.year == anotherDate.year && this.month == anotherDate.month && this.day == anotherDate.day) return 0;

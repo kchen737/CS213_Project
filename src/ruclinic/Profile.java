@@ -1,7 +1,7 @@
 package ruclinic;
 
 /**
- * @Author Kaiming Chen
+ * @Author Kaiming Chen, Luke
  */
 
 public class Profile implements Comparable<Profile> {

@@ -3,8 +3,6 @@ package ruclinic;
 /**
  *
  *
- *
- *
  * @Author Kaiming Chen
  * You can add necessary constants, constructors, and methods. However, you CANNOT change or add
  * instance variables. -2 points for each violation.
@@ -82,6 +80,15 @@ public class Appointment implements Comparable<Appointment> {
 
     }
 
+    /**
+     * Checks if an appointment is equal to another one based on
+     * Appointment date
+     * Timeslot
+     * Patient
+     * @param obj
+     * @return a boolean value whether Appointment is equal to another appointment
+     */
+
     @Override
     public boolean equals(Object obj){
         if(this==obj){
@@ -112,7 +119,6 @@ public class Appointment implements Comparable<Appointment> {
         return s;
     }
 
-    //Sort by appointment date, time then provider's name
 
     /**
      *
@@ -145,7 +151,6 @@ public class Appointment implements Comparable<Appointment> {
      * @param args
      */
     public static void main(String[] args){
-
         testToString();
         testCompareTo();
     }
