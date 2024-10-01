@@ -83,7 +83,6 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     @Override
-    idk how this one works
     public boolean equals(Object obj){
         if(this==obj){
             return true;

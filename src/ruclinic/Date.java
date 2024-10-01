@@ -21,13 +21,15 @@ public class Date implements Comparable<Date>{
     public static final int QUATERCENTENNIAL = 400;
     public int validMaxDateOfLargeMonth = 31;
     public int validMaxDateOfSmallMonth = 30;
-    public int validMaxDateOfFebruaryNonLeapYear = 28;
     public int getValidMaxDateOfFebruaryLeapYear = 29;
+    public int minimumDayOfMonth = 1;
+    public int invalidDayOfMonth = 0;
+    public int nineteeHundred = 1900;
+    public int lengthOfSmallMonth = 4;
+    public int lengthOfLargeMonth = 7;
+    public int feburary = 2;
     public int[] smallMonth = {4,6,9,11};
     public int[] bigMonth = {1,3,5,7,8,10,12};
-
-    //isValid() method checks whether the date is a valid calendar date
-
 
 
 
@@ -175,17 +177,15 @@ public class Date implements Comparable<Date>{
         boolean correctDays = false;
         switch(isLeapYear){
             case 0:
-                if (day<29 && day>0){
+                if (day<getValidMaxDateOfFebruaryLeapYear && day>invalidDayOfMonth){
                     return true;
                 }
             case 1:
-                if (day<30 && day>0){
+                if (day<validMaxDateOfSmallMonth && day>invalidDayOfMonth){
                     return true;
                 }
         }
-        //System.out.println("is not a valid calendar date.");
         return false;
-        //return ("is not a valid calendar date.");
     }
 
 
@@ -194,26 +194,26 @@ public class Date implements Comparable<Date>{
         boolean bMonth = false;//checks to see which month does it belong
         boolean sMonth = false;
         System.out.println(month+ " "+ day+" "+ year);
-        if (year<1900) {
+        if (year<nineteeHundred) {
             return false;
         }
-        if (month==2){
+        if (month==feburary){
             return leap_year_correct_days();
         }
         else {
-            for (int i=0; i<7; i++){
+            for (int i=0; i<lengthOfLargeMonth; i++){
                 if(month == bigMonth[i]){
                     bMonth = true;
-                    if(day>31 || day<1){
+                    if(day>validMaxDateOfLargeMonth || day<minimumDayOfMonth){
                         return false;
                     }
                 }
             }
             if (!bMonth){
-                for (int i=0; i<4; i++){
+                for (int i=0; i<lengthOfSmallMonth; i++){
                     if(month == smallMonth[i]){
                         sMonth = true;
-                        if(day>30 || day<1){
+                        if(day>validMaxDateOfSmallMonth || day<minimumDayOfMonth){
                             return false;
                         }
                     }
@@ -275,48 +275,56 @@ public class Date implements Comparable<Date>{
      * @param args
      */
     public static void main(String args[]){
-        //testMonth_OutOfRange();
-        //testDaysInFeb_Nonleap();
-        //testCompareTo();
-        testisValid();
-
-
+        testBeforeNineteenth();
+        testDaysInFeb_Nonleap();
+        testWithinTwelveMonth();
+        testDaysInFeb_Leap();
     }
+
+    private static void testcases(Date date, boolean expectedOutput, boolean actualOutput){
+        System.out.println("Test input: " + date.toString());
+        System.out.println("Expected output: " + expectedOutput);
+        System.out.println("Actual output: " + actualOutput);
+    }
+
 
     /**Test case #1**/
-    private static void testDaysInFeb_Nonleap(){
-        Date date = new Date("09/31/2024");
+    private static void testBeforeNineteenth(){
+        Date date = new Date("09/13/1888");
         boolean expectedOutput = false;
         boolean actualOutput = date.isValid();
-        //boolean testing = date.isToday();
-        String test1 = date.notSixMonth();
-        System.out.println(actualOutput);
-
-    }
-    /**Test case for compareTo()**/
-    private static void testCompareTo(){
-        Date date1 = new Date("08/13/2015");
-        Date date2 = new Date("08/13/2013");
-        System.out.println(date1.compareTo(date2));
+        System.out.println("**Test case #1: The valid year is before 1900");
+        testcases(date, expectedOutput, actualOutput);
     }
 
-    private static void testisValid(){
-        Date date1 = new Date("9/10/2024");
-        System.out.println("date is " + date1.toString() + " " + date1.isValidAppointmentDate());
-        Date date2 = new Date("9/40/2024");
-        System.out.println("date is " + date2.toString() + " " + date2.isValidAppointmentDate());
-        Date date3 = new Date("13/11/2024");
-        System.out.println("date is " + date3.toString() + " " + date3.isValidAppointmentDate());
-        Date date4 = new Date("02/29/2024");
-        System.out.println("date is " + date4.toString() + " " + date4.isValidAppointmentDate());
-        Date date5 = new Date("02/29/2025");
-        System.out.println("date is " + date5.toString() + " " + date5.isValidAppointmentDate());
-        Date date6 = new Date("");
-        System.out.println("date is " + date6.toString() + " " + date6.isValidAppointmentDate());
-        return;
+    /**Test case #2**/
+    private static void testDaysInFeb_Nonleap(){
+        Date date = new Date("2/29/2024");
+        boolean expectedOutput = false;
+        boolean actualOutput = date.isValid();
 
+        System.out.println("**Test case #2: #of days in feburary in a non-leap year is 28");
+        testcases(date, expectedOutput, actualOutput);
 
     }
+    /**Test case for #3**/
+    private static void testWithinTwelveMonth(){
+        Date date1 = new Date("13/13/2015");
+        boolean expectedOutput = false;
+        boolean actualOutput = date1.isValid();
+        System.out.println("**Test case #3: #of month in a year is between and including 1 and 12");
+        testcases(date1, expectedOutput, actualOutput);
+    }
+
+    /**Test case for #4**/
+    private static void testDaysInFeb_Leap(){
+        Date date = new Date("2/29/2012");
+        boolean expectedOutput = true;
+        boolean actualOutput = date.isValid();
+        System.out.println("**Test case #4: #of days in feburary in a leap year is 29");
+        testcases(date, expectedOutput, actualOutput);
+    }
+
 
 
     public int getDay(){
