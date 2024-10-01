@@ -94,12 +94,43 @@ public class Profile implements Comparable<Profile> {
         }
     }
     public static void main(String[] args){
-        testCompareTo();
-    return;
+        testCompareToSame();
+        testCompareToDifferent();
     }
-    private static void testCompareTo(){
+    /** Test case #1**/
+    private static void testCompareToSame(){
+            String fname = "kaiming";
+            String lname = "chen";
+            Date dob = new Date("09/10/2003");
+            Profile profile = new Profile(fname, lname, dob);
+            Profile profile1 = new Profile(fname, lname, dob);
+            int actualOutput = profile.compareTo(profile1);
+            int expectedOutput = 0;
+            System.out.println("/** Testcase 1: Same profile return 0 **/");
+            testcase(profile, profile1, actualOutput, expectedOutput);
 
 
-    return;
     }
+    /** Test case #2**/
+    private static void testCompareToDifferent(){
+        String fname = "Luke";
+        String lname = "Buscca";
+        Date dob = new Date("09/15/2002");
+        String fname1 = "Kaiming";
+        String lname1 = "Chen";
+        Date dob1 = new Date("09/20/2003");
+        Profile profile = new Profile(fname, lname, dob);
+        Profile profile1 = new Profile(fname1, lname1, dob1);
+        int actualOutput = profile.compareTo(profile1);
+        int expectedOutput = -1;
+        System.out.println("/** Testcase 2: Different profile, first is smaller than second return -1 **/");
+        testcase(profile, profile1, actualOutput, expectedOutput);
+    }
+    private static void testcase(Profile profile1, Profile profile2, int actualOutput, int expectedOutput){
+        System.out.println("Profile1 is: " + profile1.toString());
+        System.out.println("Profile2 is: "+ profile2.toString());
+        System.out.println("The actualOutput is: " + actualOutput);
+        System.out.println("The expectedOutput is: " + expectedOutput);
+    }
+
 }

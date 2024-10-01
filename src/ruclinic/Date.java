@@ -225,7 +225,6 @@ public class Date implements Comparable<Date>{
     public boolean isValid(){
         boolean bMonth = false;//checks to see which month does it belong
         boolean sMonth = false;
-        System.out.println(month+ " "+ day+" "+ year);
         if (year< NINETEE_HUNDRED) {
             return false;
         }

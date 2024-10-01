@@ -158,7 +158,6 @@ public class List {
         if (appointments[0]!=null){
             for (int i = 0; i < size; i++) {
                 if(appointments[i].getProvider().name().equals(appointment.getProvider().name()) && appointments[i].getTimeslot().equals(appointment.getTimeslot()) && appointments[i].getDate().equals(appointment.getDate())){
-                    System.out.println("provider is not available " + appointment.getTimeslot().ordinal());
                     return appointment.getTimeslot().ordinal()+1;
                 }
             }
