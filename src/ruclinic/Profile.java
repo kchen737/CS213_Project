@@ -96,6 +96,11 @@ public class Profile implements Comparable<Profile> {
     public static void main(String[] args){
         testCompareToSame();
         testCompareToDifferent();
+        testCompare3();
+        testCompare4();
+        testCompare5();
+        testCompare6();
+        testCompare7();
     }
     /** Test case #1**/
     private static void testCompareToSame(){
@@ -126,6 +131,74 @@ public class Profile implements Comparable<Profile> {
         System.out.println("/** Testcase 2: Different profile, first is smaller than second return -1 **/");
         testcase(profile, profile1, actualOutput, expectedOutput);
     }
+    /**Test case #3**/
+    private static void testCompare3(){
+        String fname = "Kaiming";
+        String lname = "Lin";
+        String lname2 = "Chen";
+        Date dob = new Date("12/30/2006");
+        Profile profile = new Profile(fname, lname, dob);
+        Profile profile1 = new Profile(fname, lname2, dob);
+        int actualOutput = profile.compareTo(profile1);
+        int expectedOutput = 1;
+        System.out.println("/** Testcase 3: Different profile, return 1");
+        testcase(profile, profile1, actualOutput, expectedOutput);
+    }
+    /** Test case #4**/
+    private static void testCompare4(){
+        String fname = "Luke";
+        String lname = "John";
+        String fname1 = "Kaiming";
+        Date dob = new Date("3/14/2012");
+        Profile profile = new Profile(fname, lname, dob);
+        Profile profile1 = new Profile(fname1, lname, dob);
+        int actualOutput = profile.compareTo(profile1);
+        int expectedOutput = 1;
+        System.out.println("/** Testcase 4: different profile");
+        testcase(profile, profile1, actualOutput, expectedOutput);
+    }
+    /** Test case #5**/
+    private static void testCompare5(){
+        String fname = "Luk";
+        String lname = "Calvin";
+        Date dob = new Date("3/14/2012");
+        Date dob1 = new Date("5/13/2005");
+        Profile profile = new Profile(fname, lname, dob);
+        Profile profile1 = new Profile(fname, lname, dob1);
+        int actualOutput = profile.compareTo(profile1);
+        int expectedOutput = 1;
+        System.out.println("/** Testcase 4: different profile with different birthday");
+        testcase(profile, profile1, actualOutput, expectedOutput);
+    }
+    /** Test case #6**/
+    private static void testCompare6(){
+        String fname = "Levin";
+        String lname = "Calvin";
+        Date dob = new Date("3/14/2012");
+        Date dob1 = new Date("5/13/2005");
+        Profile profile = new Profile(fname, lname, dob);
+        Profile profile1 = new Profile(fname, lname, dob1);
+        int actualOutput = profile1.compareTo(profile);
+        int expectedOutput = -1;
+        System.out.println("/** Testcase 5: different profile with different birthday");
+        testcase(profile, profile1, actualOutput, expectedOutput);
+    }
+    /** Test case #7**/
+    private static void testCompare7(){
+        String fname = "Luke";
+        String lname = "John";
+        String fname1 = "Kaiming";
+        Date dob = new Date("3/14/2012");
+        Profile profile = new Profile(fname, lname, dob);
+        Profile profile1 = new Profile(fname1, lname, dob);
+        int actualOutput = profile1.compareTo(profile);
+        int expectedOutput = -1;
+        System.out.println("/** Testcase 7: different profile");
+        testcase(profile, profile1, actualOutput, expectedOutput);
+    }
+
+
+
     private static void testcase(Profile profile1, Profile profile2, int actualOutput, int expectedOutput){
         System.out.println("Profile1 is: " + profile1.toString());
         System.out.println("Profile2 is: "+ profile2.toString());

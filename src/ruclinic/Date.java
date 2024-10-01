@@ -26,7 +26,7 @@ public class Date implements Comparable<Date>{
     public static final int MINIMUMDAYOFMONTH = 1;
     public static final int INVALIDDAYOFMONTH = 0;
     public static final int NINETEE_HUNDRED = 1900;
-    public static final int lengthOfSmallMonth = 4;
+    public static final int LENGTH_OF_SMALL_MONTH = 4;
     public static final int LENGTH_OF_LARGE_MONTH = 7;
     public static final int FEBURARY = 2;
     public int[] smallMonth = {4,6,9,11};
@@ -241,7 +241,7 @@ public class Date implements Comparable<Date>{
                 }
             }
             if (!bMonth){
-                for (int i=0; i<lengthOfSmallMonth; i++){
+                for (int i = 0; i< LENGTH_OF_SMALL_MONTH; i++){
                     if(month == smallMonth[i]){
                         sMonth = true;
                         if(day> VALIDMAXDATEOFSMALLMONTH || day<MINIMUMDAYOFMONTH){
@@ -323,6 +323,8 @@ public class Date implements Comparable<Date>{
         testDaysInFeb_Nonleap();
         testWithinTwelveMonth();
         testDaysInFeb_Leap();
+        testInvalidDays();
+        testValidDaysInSeptember();
     }
 
     private static void testcases(Date date, boolean expectedOutput, boolean actualOutput){
@@ -343,7 +345,7 @@ public class Date implements Comparable<Date>{
 
     /**Test case #2**/
     private static void testDaysInFeb_Nonleap(){
-        Date date = new Date("2/29/2024");
+        Date date = new Date("2/29/2023");
         boolean expectedOutput = false;
         boolean actualOutput = date.isValid();
 
@@ -367,6 +369,25 @@ public class Date implements Comparable<Date>{
         boolean actualOutput = date.isValid();
         System.out.println("**Test case #4: #of days in feburary in a leap year is 29");
         testcases(date, expectedOutput, actualOutput);
+    }
+
+    /** Test case for #5**/
+    private static void testInvalidDays(){
+        Date date = new Date("8/0/2024");
+        boolean expectedOutput = false;
+        boolean actualOutput = date.isValid();
+        System.out.println("**Test case #5: #of days in month should be between 1-30");
+        testcases(date, expectedOutput, actualOutput);
+    }
+
+    /** Test case for #6**/
+    private static void testValidDaysInSeptember(){
+        Date date = new Date("9/12/2024");
+        boolean expectedOutput = true;
+        boolean actualOutput = date.isValid();
+        System.out.println("**Test case #6: #of days in septmeber should be between 1-30");
+        testcases(date, expectedOutput, actualOutput);
+
     }
 
 
