@@ -39,7 +39,6 @@ public class Patient implements Comparable<Patient>{
             newVisitList = newVisitList.getNext();
         }
         if(newVisitList == null){
-            System.out.println("not found");
             return;
         }
         prev.setNext(newVisitList.getNext());

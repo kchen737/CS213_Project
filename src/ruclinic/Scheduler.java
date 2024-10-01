@@ -314,7 +314,6 @@ public class Scheduler {
         }
         else{
             outputStr = outputStr.append("Invalid command!\n");
-            //System.out.println("Invalid command!\n")
         }
     }
 

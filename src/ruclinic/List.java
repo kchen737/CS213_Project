@@ -61,10 +61,6 @@ public class List {
 
     }
 
-    public void initiateList(){
-        this.appointments = new Appointment[10];
-    }
-
 
 
     public void remove(Appointment appointment){

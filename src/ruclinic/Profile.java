@@ -62,7 +62,6 @@ public class Profile implements Comparable<Profile> {
         else {
             return 1;
         }
-
     }
     public static void main(String[] args){
         testCompareTo();

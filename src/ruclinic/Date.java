@@ -80,7 +80,6 @@ public class Date implements Comparable<Date>{
         calendar.set(year, month-1, day);
 
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        //System.out.println("SatOrSun method: "  + dayOfWeek + " " + year + " " + month + " " + day) ;
         if(dayOfWeek == Calendar.SATURDAY){
             correct = false;
             return (" is Saturday or Sunday.");
@@ -147,7 +146,6 @@ public class Date implements Comparable<Date>{
         date.set(year, month-1, day);
         if (date.after(calendar)){
             return (" is today or a date after today.");
-
         }
         if (isToday()){
             return (" is today or a date after today.");
@@ -163,7 +161,6 @@ public class Date implements Comparable<Date>{
             if (year % CENTENNIAL == 0){
                 if (year % QUATERCENTENNIAL == 0){
                     isLeapYear = 1;
-                    System.out.println("is a leap year");
                 }
             }
             else {
@@ -199,10 +196,8 @@ public class Date implements Comparable<Date>{
         System.out.println(month+ " "+ day+" "+ year);
         if (year<1900) {
             return false;
-            //return ("is not a valid calendar date. ");
         }
         if (month==2){
-            System.out.println("received");
             return leap_year_correct_days();
         }
         else {
@@ -210,7 +205,6 @@ public class Date implements Comparable<Date>{
                 if(month == bigMonth[i]){
                     bMonth = true;
                     if(day>31 || day<1){
-                        //System.out.println("is not a valid calendar date.");
                         return false;
                     }
                 }
@@ -220,16 +214,13 @@ public class Date implements Comparable<Date>{
                     if(month == smallMonth[i]){
                         sMonth = true;
                         if(day>30 || day<1){
-                            //System.out.println("is not a valid calendar date.");
                             return false;
-                            //return ("is not a valid calendar date. ");
                         }
                     }
                 }
             }
         }
         if (!sMonth && !bMonth){
-            //System.out.println("is not a valid calendar date.");
             return false;
         }
         return true;
@@ -277,7 +268,6 @@ public class Date implements Comparable<Date>{
         else{
             return -1;
         }
-        //return 1;
     }
 
     /**
