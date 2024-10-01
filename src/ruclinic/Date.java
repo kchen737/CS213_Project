@@ -55,7 +55,7 @@ public class Date implements Comparable<Date>{
     /**
      * isToday() method is used to check if the date is today, could be used for appointment making
      * and also used to check if a birthday is valid or not
-     * @return
+     * @return whether or not date given is today
      */
     public boolean isToday(){
         Calendar calendar = Calendar.getInstance();
@@ -70,6 +70,10 @@ public class Date implements Comparable<Date>{
         return false;
     }
 
+    /**
+     * determines if day is a weekend or not and returns string for output
+     * @return string for output
+     */
     public String satOrSun(){
         boolean correct = true;
         Calendar calendar = Calendar.getInstance();
@@ -89,6 +93,10 @@ public class Date implements Comparable<Date>{
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public String notSixMonth(){
 
         Calendar sixMonth = Calendar.getInstance();

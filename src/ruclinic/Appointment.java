@@ -22,18 +22,40 @@ public class Appointment implements Comparable<Appointment> {
     private Provider provider;
 
     //Getter and setter methods for each instance variables
+
+    /**
+     * getter medthod of date
+     * @return date of appointment
+     */
     public Date getDate(){
         return date;
     }
+
+    /**
+     * getter method of timeslot
+     * @return timeslot
+     */
     public Timeslot getTimeslot(){
         return timeslot;
     }
+
+    /**
+     * getter method of profile
+     *
+     * @return profile
+     */
     public Profile getProfile(){
         return patient;
     }
+
+    /**
+     * getter method of provider
+     * @return provider
+     */
     public Provider getProvider(){
         return provider;
     }
+
     public Appointment(Date date, Timeslot timeslot, Profile patient, Provider provider){
         this.date = date;
         this.timeslot = timeslot;
@@ -41,6 +63,11 @@ public class Appointment implements Comparable<Appointment> {
         this.provider = provider;
     }
 
+    /**
+     *  takes integer and returns corresponding timeslot
+     * @param numberOfTimeslot integer representation of timeslot
+     * @return timeslot
+     */
     public String returnTime(int numberOfTimeslot){
 
         return switch (numberOfTimeslot) {
@@ -56,6 +83,7 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     @Override
+    idk how this one works
     public boolean equals(Object obj){
         if(this==obj){
             return true;
@@ -70,6 +98,10 @@ public class Appointment implements Comparable<Appointment> {
                 this.patient.equals(otherAppointment.patient);
     }
 
+    /**
+     * gets string representation of appointment for output
+     * @return string representation of appointment
+     */
     @Override
     public String toString(){
 
@@ -82,6 +114,12 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     //Sort by appointment date, time then provider's name
+
+    /**
+     *
+     * @param anotherappointment the object to be compared.
+     * @return integer of whether greater, lesser or equal, 1,-1,0 respectively
+     */
     @Override
     public int compareTo(Appointment anotherappointment){
         int dateComparison = this.date.compareTo(anotherappointment.date);
@@ -103,7 +141,10 @@ public class Appointment implements Comparable<Appointment> {
         return 1;
     }
 
-
+    /**
+     * tester method of comparison class
+     * @param args
+     */
     public static void main(String[] args){
 
         testToString();
