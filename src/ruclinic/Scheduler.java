@@ -33,15 +33,9 @@ public class Scheduler {
                 tokenizer = new StringTokenizer(commandLine, ",");
                 firstToken = tokenizer.nextToken();
             }
-            if(firstToken.equals("S")){
-                scheduleNewAppointment(commandLine);
-            }
-            else if(firstToken.equals("C")){
-                cancelAppointment(commandLine);
-            }
-            else if(firstToken.equals("R")){
-                rescheduleAppointment(commandLine);
-            }
+            if(firstToken.equals("S"))scheduleNewAppointment(commandLine);
+            else if(firstToken.equals("C"))cancelAppointment(commandLine);
+            else if(firstToken.equals("R"))rescheduleAppointment(commandLine);
             else if(firstToken.equals("PA"))listByAppointment(commandLine);
             else if(firstToken.equals("PP"))listByPatient(commandLine);
             else if(firstToken.equals("PL"))listByLocation(commandLine);
@@ -97,7 +91,6 @@ public class Scheduler {
                 case 6 : return Timeslot.SLOT6;
             }
         }
-        //System.out.println("not a valid timeslot");
         outputStr = outputStr.append(number + " is not a valid time slot.\n");
         return null;
     }
@@ -364,7 +357,12 @@ public class Scheduler {
                             Timeslot newtimeslot = convertIntTimeslot((tokenizer.nextToken()));
                             if (newtimeslot!= null){
                                 Appointment appointment = list.findAppointmentGivenDateTimeslotAndProfile(appointmentDate,timeslot,profile);
-                                reschedulling(appointment, newtimeslot);
+                                if (appointment!= null){
+                                    reschedulling(appointment, newtimeslot);
+                                }
+                                else{
+                                    outputStr = outputStr.append(appointmentDate + " " + timeslot + " " + profile + " does not exist.\n");
+                                }
                             }
                         }
                     }
