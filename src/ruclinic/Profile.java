@@ -1,6 +1,7 @@
 package ruclinic;
 
 /**
+ * Profile class with patient's first name, last name and date of birth
  * @Author Kaiming Chen, Luke
  */
 
@@ -19,6 +20,7 @@ public class Profile implements Comparable<Profile> {
     public void setDob(Date dob1){
         this.dob=dob1;
     }
+    //Initiate class with first name, last name and dob stored
     public Profile(String fn, String ln, Date dateOfBirth){
         fname= fn;
         lname= ln;

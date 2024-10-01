@@ -1,7 +1,7 @@
 package ruclinic;
 
 /**
- *
+ * Enum class with all the charges of different specialty
  * @Author: Kaiming Chen
  */
 public enum Specialty {
@@ -11,6 +11,10 @@ public enum Specialty {
 
     private final int charge;
 
+    /**
+     * To retrieve charge from the class
+     * @param charge
+     */
     private Specialty(int charge) {
         this.charge = charge;
     }

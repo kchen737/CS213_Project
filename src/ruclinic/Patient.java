@@ -1,6 +1,7 @@
 package ruclinic;
 
 /**
+ * Patient class with profile and visits
  * @author LBSaka, Kaiming Chen
  */
 public class Patient implements Comparable<Patient>{

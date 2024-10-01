@@ -13,7 +13,7 @@ public enum Timeslot {
     SLOT5(15,00),
     SLOT6(16,15);
 
-
+    //Constants
     public static final int NOON = 12;
     private final int hour;
     private final int minute;
@@ -23,17 +23,10 @@ public enum Timeslot {
         this.minute = minute;
     }
 
-    public String checkValid(int number){
-        return switch (number) {
-            case 1 -> Timeslot.SLOT1.toString();
-            case 2 -> Timeslot.SLOT2.toString();
-            case 3 -> Timeslot.SLOT3.toString();
-            case 4 -> Timeslot.SLOT4.toString();
-            case 5 -> Timeslot.SLOT5.toString();
-            case 6 -> Timeslot.SLOT6.toString();
-            default -> "is not a valid time slot";
-        };
-    }
+    /**
+     * Overrides the toString method to output the timeslot in correct formate
+     * @return string value of timeslot
+     */
 
     @Override
     public String toString(){

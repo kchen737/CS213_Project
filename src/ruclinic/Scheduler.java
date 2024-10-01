@@ -109,9 +109,9 @@ public class Scheduler {
     }
 
     /**
-     *
+     * Used to check if the appointment date from the token is valid or not
      * @param date
-     * @return
+     * @return Date
      */
     public static Date getAppointmentDate(String date){
         Date appointmentDate = new Date(date);
@@ -131,6 +131,11 @@ public class Scheduler {
         return appointmentDate;
     }
 
+    /**
+     * Check of the date of birth from the token is valid or not
+     * @param date
+     * @return Date
+     */
     public static Date getDOB(String date){
         Date DOBdate = new Date(date);
         boolean valid = DOBdate.isValid();
@@ -149,6 +154,11 @@ public class Scheduler {
         return DOBdate;
     }
 
+    /**
+     * To retrieve provider and not care about the case
+     * @param name
+     * @return provider
+     */
     public static Provider getProvider(String name){
         if(name.equalsIgnoreCase(Provider.CERAVOLO.name())){
             return Provider.CERAVOLO;
@@ -184,6 +194,12 @@ public class Scheduler {
         return list;
     }
 
+    /**
+     * Adding to the list of appointments by checking if there is the appointment within the list or not
+     * and see if the appointment is a valid appointment
+     * @param appointment
+     * @return List
+     */
     public static List addToList(Appointment appointment){
         if (list.getSize()>0){
             if (list.contains(appointment)){
@@ -207,6 +223,10 @@ public class Scheduler {
 
     }
 
+    /**
+     * Used to print valid scheduled appointments
+     * @param appointment
+     */
     public static void printBookedAppointment(Appointment appointment){
         String appointmentDate = appointment.getDate().toString();
         String timeslot = appointment.getTimeslot().toString();
@@ -215,6 +235,13 @@ public class Scheduler {
         String provider = appointment.getProvider().toString();
         outputStr = outputStr.append(appointmentDate + " " +  timeslot + " " + name + " " + dob + " " + provider + " booked.\n");
     }
+
+    /**
+     * Used to enter patient profile into the medical record
+     * Checks to see if there is already existing patient in the medical record
+     * if yes add to the visit
+     * @param appointment
+     */
 
     public static void enterPatientToMedicalRecord(Appointment appointment){
         boolean found = false;
@@ -245,12 +272,17 @@ public class Scheduler {
             medicalRecord.add(patient);
         }
     }
+    //Initialize medical record
     public static MedicalRecord initialMedicalRecord(){
         patients = new Patient[1];
         MedicalRecord record = new MedicalRecord(patients, 0);
         return record;
     }
 
+    /**
+     * Schedules appointment
+     * @param tokens from the command line
+     */
     public static void scheduleNewAppointment(String tokens){
         StringTokenizer tokenizer = new StringTokenizer(tokens, ", ");
         //System.out.println(tokenizer.countTokens());
@@ -283,6 +315,11 @@ public class Scheduler {
             outputStr = outputStr.append("Invalid command!\n");
         }
     }
+
+    /**
+     * Used by to cancel appointments
+     * @param appointment
+     */
     public static void cancelling(Appointment appointment){
 
         if(list.contains(appointment)){
@@ -306,6 +343,11 @@ public class Scheduler {
         }
 
     }
+
+    /**
+     * Used to cancel Appointments
+     * @param tokens read from command lines
+     */
     public static void cancelAppointment(String tokens){
         StringTokenizer tokenizer = new StringTokenizer(tokens, ", ");
         tokenizer.nextToken();
@@ -335,7 +377,11 @@ public class Scheduler {
         }
     }
 
-
+    /**
+     * Used to reschedule appoitnments with the appointment before and new timeslot
+     * @param appointment from before
+     * @param newTimeslot new time that want to reschedule to
+     */
     public static void reschedulling(Appointment appointment, Timeslot newTimeslot){
         if(list.getAppointmentList()[0]!=null){
             if(list.contains(appointment)){
@@ -357,6 +403,10 @@ public class Scheduler {
         }
     }
 
+    /**
+     * Used to reschedule an appointment
+     * @param tokens read from command line
+     */
     public static void rescheduleAppointment(String tokens){
         StringTokenizer tokenizer = new StringTokenizer(tokens, ", ");
         tokenizer.nextToken();
@@ -392,6 +442,12 @@ public class Scheduler {
         }
 
     }
+
+    /**
+     * Used to print by appointment
+     * will print schedule calendar is empty if nothing is in the list
+     * @param tokens
+     */
     public static void listByAppointment(String tokens){
         if (list.getAppointmentList()[0] == null){
             outputStr = outputStr.append("The schedule calendar is empty.\n");
@@ -406,6 +462,11 @@ public class Scheduler {
         }
 
     }
+
+    /**
+     * Used to print by patient/date/time
+     * @param tokens read from command lines
+     */
     public static void listByPatient(String tokens){
         if (list.getAppointmentList()[0] == null){
             outputStr = outputStr.append("The schedule calendar is empty.\n");
@@ -420,6 +481,11 @@ public class Scheduler {
         }
 
     }
+
+    /**
+     * Used to print by locations
+     * @param tokens read from command lines
+     */
     public static void listByLocation(String tokens){
         if (list.getAppointmentList()[0] == null){
             outputStr = outputStr.append("The schedule calendar is empty.\n");
@@ -434,6 +500,11 @@ public class Scheduler {
             outputStr = outputStr.append("** end of list **\n");
         }
     }
+
+    /**
+     * used to print by billling statement
+     * @param tokens
+     */
     public static void listByBilling(String tokens){
         outputStr = outputStr.append("** Billing statement ordered by patient **\n");
         if(medicalRecord.getPatients()!=null){
@@ -445,6 +516,11 @@ public class Scheduler {
         }
         outputStr = outputStr.append("** end of list **\n");
     }
+
+    /**
+     * testbed main used for testcases
+     * @param args
+     */
     public static void main(String[] args){
         //testRemoveVisit();
         new Scheduler().run(args);

@@ -149,7 +149,11 @@ public class List {
 
     }
 
-
+    /**
+     * Checks for if the provider is available at the time
+     * @param appointment
+     * @return an integer of which slot the provider is taken
+     */
     public int providerIsAvailable(Appointment appointment){
         if (appointments[0]!=null){
             for (int i = 0; i < size; i++) {
@@ -162,6 +166,11 @@ public class List {
         return 0;
     }
 
+    /**
+     * Checks to see if the patient is available
+     * @param appointment
+     * @return true of false
+     */
     public boolean patientIsAvailable(Appointment appointment){
         if (appointments[0]!=null){
             for (int i = 0; i < size; i++) {
@@ -171,6 +180,13 @@ public class List {
         return true;
     }
 
+    /**
+     * Find the appointment with the given parameters
+     * @param apptDate date of the appointment
+     * @param timeslot timeslot of the appointment
+     * @param profile profile of the appointment
+     * @return a appointment
+     */
     public Appointment findAppointmentGivenDateTimeslotAndProfile(Date apptDate,Timeslot timeslot, Profile profile){
         if(appointments[0]!=null){
             for (int i = 0; i < size; i++) {

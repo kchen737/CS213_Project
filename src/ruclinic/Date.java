@@ -20,15 +20,15 @@ public class Date implements Comparable<Date>{
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
-    public int validMaxDateOfLargeMonth = 31;
-    public int validMaxDateOfSmallMonth = 30;
-    public int getValidMaxDateOfFebruaryLeapYear = 29;
-    public int minimumDayOfMonth = 1;
-    public int invalidDayOfMonth = 0;
-    public int nineteeHundred = 1900;
-    public int lengthOfSmallMonth = 4;
-    public int lengthOfLargeMonth = 7;
-    public int feburary = 2;
+    public static final int validMaxDateOfLargeMonth = 31;
+    public static final int validMaxDateOfSmallMonth = 30;
+    public static final int getValidMaxDateOfFebruaryLeapYear = 29;
+    public static final int minimumDayOfMonth = 1;
+    public static final int invalidDayOfMonth = 0;
+    public static final int nineteeHundred = 1900;
+    public static final int lengthOfSmallMonth = 4;
+    public static final int lengthOfLargeMonth = 7;
+    public static final int feburary = 2;
     public int[] smallMonth = {4,6,9,11};
     public int[] bigMonth = {1,3,5,7,8,10,12};
 
