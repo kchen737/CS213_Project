@@ -96,7 +96,7 @@ public class Date implements Comparable<Date>{
 
     /**
      *
-     * @return
+     * @return a string as output for the interface
      */
     public String notSixMonth(){
 
@@ -113,6 +113,10 @@ public class Date implements Comparable<Date>{
 
     }
 
+    /**
+     * Checks if the date is before today's date
+     * @return a string for output
+     */
     public String beforeToday(){
         Calendar calendar = Calendar.getInstance();
 
@@ -127,6 +131,11 @@ public class Date implements Comparable<Date>{
         return null;
     }
 
+    /**
+     * Checks if the date is a valid appointment Date
+     * Cannot be before today, cannot be beyond six months and cannot be saturday or sunday
+     * @return a string for output
+     */
     public String isValidAppointmentDate(){
         if(beforeToday()!=null){
             return beforeToday();
