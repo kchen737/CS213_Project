@@ -2,15 +2,23 @@ package ruclinic;
 import java.util.StringTokenizer;
 import java.util.Scanner;
 /**
- *
+ * Scheduler class that process and combine other classes to read tokens from user
+ * Use the token to generate output
+ * Scheduler class will process scheduling, cancel appointment, reschedule, and print
+ * @Author Kaiming Chen, Luke
  */
 
 public class Scheduler {
-    private static List list;
-    private static StringBuilder outputStr;
-    private static Patient[] patients;
-    private static MedicalRecord medicalRecord;
+    //Instances variables
+    private static List list; //Used for keep track of appointments
+    private static StringBuilder outputStr; //used to generate output
+    private static Patient[] patients; //used to keep track of patients
+    private static MedicalRecord medicalRecord; //used to keep track of patients stored in medical record with visits
 
+    /**
+     * Takes all the input from users and generate output based on the prompt
+     * @param args takes from command line
+     */
     public void run(String[] args){
         System.out.println("Scheduler is running.");
         Scanner scanner = new Scanner(System.in);
@@ -51,17 +59,11 @@ public class Scheduler {
         }
     }
 
-    public static void main(String[] args){
-        //testRemoveVisit();
-        new Scheduler().run(args);
-        Date date = new Date("01/01/2020");
-        Timeslot timeslot = Timeslot.SLOT2;
-        Profile profile = new Profile("c", "l", date);
-        Provider provider = Provider.HARPER;
-        Appointment appointment1 = new Appointment(date, timeslot, profile, provider);
-        //enterPatientToMedicalRecord(appointment1);
-        //addToList(appointment1);
-    }
+    /**
+     * Checks for if there are six tokens for each command of S, C, and R
+     * @param tokenizer
+     * @return boolean value for if the token of each command is 6
+     */
     public static boolean checkTokens(StringTokenizer tokenizer){
         int tokenCount = tokenizer.countTokens();
         if(tokenCount == 6){
@@ -69,6 +71,12 @@ public class Scheduler {
         }
         return false;
     }
+
+    /**
+     * Used by timeslot to check if an integer is entered
+     * @param number
+     * @return boolean value of true or false
+     */
     public static boolean isInteger(String number){
         try{
             Integer.parseInt(number);
@@ -79,6 +87,11 @@ public class Scheduler {
         }
     }
 
+    /**
+     * Used by timeslot to convert integer value entered in commandline into actual timeslot
+     * @param number
+     * @return timeslot
+     */
     public static Timeslot convertIntTimeslot(String number){
         if (isInteger(number)){
             int num = Integer.parseInt(number);
@@ -95,6 +108,11 @@ public class Scheduler {
         return null;
     }
 
+    /**
+     *
+     * @param date
+     * @return
+     */
     public static Date getAppointmentDate(String date){
         Date appointmentDate = new Date(date);
         boolean valid = appointmentDate.isValid();
@@ -188,7 +206,7 @@ public class Scheduler {
         return list;
 
     }
-    //12/11/2024 1:30 PM Jane Doe 5/1/1996 [ZIMNES, CLARK, Union 07066, FAMILY] booked.
+
     public static void printBookedAppointment(Appointment appointment){
         String appointmentDate = appointment.getDate().toString();
         String timeslot = appointment.getTimeslot().toString();
@@ -427,6 +445,16 @@ public class Scheduler {
         }
         outputStr = outputStr.append("** end of list **\n");
     }
+    public static void main(String[] args){
+        //testRemoveVisit();
+        new Scheduler().run(args);
+        Date date = new Date("01/01/2020");
+        Timeslot timeslot = Timeslot.SLOT2;
+        Profile profile = new Profile("c", "l", date);
+        Provider provider = Provider.HARPER;
+        Appointment appointment1 = new Appointment(date, timeslot, profile, provider);
+    }
+
     public static void testRemoveVisit(){
         Date date1 = new Date("01/01/2020");
         Date date2 = new Date("04/03/2020");

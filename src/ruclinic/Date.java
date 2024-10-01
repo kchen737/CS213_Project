@@ -16,6 +16,7 @@ import java.util.Calendar;
 
 
 public class Date implements Comparable<Date>{
+    //Global variables to be used
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
